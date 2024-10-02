@@ -1,1 +1,1 @@
-# projectrepo
+This project is an app that allows users to learn a language by doing lessons and quizzes for whichever language they choose. They also can get achievements and be placed on a leaderboard for how many lessons they've completed.
