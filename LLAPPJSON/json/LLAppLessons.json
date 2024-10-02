@@ -21,6 +21,57 @@
                 "comment": "The difficulty spike might be a bit much, no?",
                 "rating": 4
             }
-        ]
+        ],
+        "progressTracker": {
+            "trackerID": 102,
+            "progress": 0.4,
+            "completedLessons": [
+                {
+                    "lessonID": 1,
+                    "language": "Spanish",
+                    "difficultyLevel": "Basic",
+                    "content": "This lesson is an introduction to the language of Spanish.",
+                    "duration": "Short"
+                }
+            ],
+            "incompleteLessons": [
+                {
+                    "lessonID": 2,
+                    "language": "Spanish",
+                    "difficultyLevel": "Basic",
+                    "content": "This lesson is an introduction to the basics of grammar in Spanish.",
+                    "duration": "Medium"
+                }
+            ]
+        },
+        "progressTracker": {
+            "trackerID": 111,
+            "progress": 0.7,
+            "completedLessons": [
+                {
+                    "lessonID": 1,
+                    "language": "Spanish",
+                    "difficultyLevel": "Basic",
+                    "content": "This lesson is an introduction to the language of Spanish.",
+                    "duration": "Short"
+                },
+                {
+                    "lessonID": 2,
+                    "language": "Spanish",
+                    "difficultyLevel": "Basic",
+                    "content": "This lesson is an introduction to the basics of grammar in Spanish.",
+                    "duration": "Medium"
+                }
+            ],
+            "incompleteLessons": [
+                {
+                    "lessonID": 11,
+                    "language": "Spanish",
+                    "difficultyLevel": "Advanced",
+                    "content": "This lesson is a continuation of more advanced Spanish grammar concepts.",
+                    "duration": "Long"
+                }
+            ]
+        }
     }
 ]
