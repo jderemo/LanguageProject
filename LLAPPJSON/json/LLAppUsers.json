@@ -1,0 +1,18 @@
+[
+    {
+        "userID": 1,
+        "email": "emmamarkman@outlook.com",
+        "username": "MarketingEmma",
+        "password": "BrandM@ster2024!",
+        "progress": 0,
+        "preferredLanguage": "English"
+    },
+    {
+        "userID": 2,
+        "email": "david.anderson@edtechguru.com",
+        "username": "TechEducatorDavid",
+        "password": "EdTech4Life!",
+        "progress": 4,
+        "preferredLanguage": "Spanish"
+    }
+]

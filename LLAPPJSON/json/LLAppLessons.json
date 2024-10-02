@@ -1,0 +1,26 @@
+[
+    {
+        "lessonID": 2,
+        "language": "Spanish",
+        "difficultyLevel": "Basic",
+        "content": "This lesson is an introduction to the basics of grammar in Spanish.",
+        "duration": "Medium",
+        "feedbackList": [
+            {
+                "comment": "Pretty helpful lesson!",
+                "rating": 5
+            }
+        ],
+        "lessonID": 11,
+        "language": "Spanish",
+        "difficultyLevel": "Advanced",
+        "content": "This lesson is a continuation of more advanced Spanish grammar concepts.",
+        "duration": "Long",
+        "feedbackList": [
+            {
+                "comment": "The difficulty spike might be a bit much, no?",
+                "rating": 4
+            }
+        ]
+    }
+]
