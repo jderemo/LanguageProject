@@ -1,29 +1,43 @@
 [
     {
         "quizID": "Spanish1",
-        "chooseQuiz": "Spanish1",
         "questionsList": [
             {
                 "exerciseID": "SPMultipleChoice1",
                 "question": "What is the correct conjugation for 'comer' (to eat) in first-person present tense?",
-                "userOptions": ["como", "come", "comes", "comemos"],
-                "wordBank": ["comer", "present tense", "first-person", "conjugation"],
-                "correctAnswer": "como",
-                "grade": "Pass"
+                "userOptions": [
+                    "como",
+                    "come",
+                    "comes",
+                    "comemos"
+                ],
+                "wordBank": [
+                    "comer",
+                    "present tense",
+                    "first-person",
+                    "conjugation"
+                ],
+                "correctAnswer": "como"
             }
         ]
     },
     {
         "quizID": "Spanish5",
-        "chooseQuiz": "Spanish5",
         "questionsList": [
             {
                 "exerciseID": "SPFillInTheBlank2",
                 "question": "Fill in the blank: Es importante que ellos ______ (haber) terminado el proyecto antes de la reunión.",
-                "userOptions": ["hayan", "han", "habrán", "haya", "haber"],
-                "wordBank": ["haber, third-person, plural"],
-                "correctAnswer": "hayan",
-                "grade": "Pass"
+                "userOptions": [
+                    "hayan",
+                    "han",
+                    "habrán",
+                    "haya",
+                    "haber"
+                ],
+                "wordBank": [
+                    "haber, third-person, plural"
+                ],
+                "correctAnswer": "hayan"
             }
         ]
     }

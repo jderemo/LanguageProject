@@ -4,104 +4,56 @@
         "email": "emmamarkman@outlook.com",
         "username": "MarketingEmma",
         "password": "BrandM@ster2024!",
-        "progress": 0.4,
+        "progress": {
+            "progress": 0.4,
+            "completedLessons": [
+                1
+            ],
+            "incompleteLessons": [
+                2,
+                11
+            ]
+        },
         "preferredLanguage": "English",
         "achievements": [
-            {
-                "achievement": 101,
-                "title": "Beginner",
-                "description": "Awarded for starting your first lesson!",
-                "dateAchieved": 20241002,
-                "score": 100
-            }
+            101
         ],
-        "leaderboard": {
-            "userRank": 5,
-            "totalScore": 3200,
-            "achievements": [ 
-                {
-                    "achievement": 101,
-                    "score": 100
-                }
-            ],
-            "ranks": [
-                {
-                    "rank": 1,
-                    "username": "TechEducatorDavid",
-                    "score": 5000
-                },
-                {
-                    "rank": 2,
-                    "username": "GrammarGuru",
-                    "score": 4700
-                },
-                {
-                    "rank": 3,
-                    "username": "LinguaAce",
-                    "score": 4500
-                },
-                {
-                    "rank": 4,
-                    "username": "ConjugationPro",
-                    "score": 4300
-                },
-                {
-                    "rank": 5,
-                    "username": "MarketingEmma",
-                    "score": 100
-                }
-            ]
-        }
+        "achievementDates": [
+            {
+                "id": 101,
+                "date": 1727827200
+            }
+        ]
     },
     {
         "userID": 2,
         "email": "david.anderson@edtechguru.com",
         "username": "TechEducatorDavid",
         "password": "EdTech4Life!",
-        "progress": 4.0,
+        "progress": {
+            "progress": 0.7,
+            "completedLessons": [
+                1,
+                2
+            ],
+            "incompleteLessons": [
+                11
+            ]
+        },
         "preferredLanguage": "Spanish",
         "achievements": [
+            101,
+            201
+        ],
+        "achievementDates": [
             {
-                "achievement": 101,
-                "title": "Beginner",
-                "description": "Awarded for starting your first lesson!",
-                "dateAchieved": 20240513,
-                "score": 100
+                "id": 101,
+                "date": 1715558400
             },
             {
-                "achievement": 201,
-                "title": "Grammar-Savvy",
-                "description": "Awarded for getting to advanced lessons.",
-                "dateAchieved": 20241001,
-                "score": 700
+                "id": 201,
+                "date": 1727740800
             }
-        ],
-        "leaderboard": {
-            "userRank": 1,
-            "totalScore": 4700,
-            "achievements": [ 
-                {
-                    "achievement": [101, 201],
-                    "score": 800
-                }
-            ],
-            "ranks": [
-                {
-                    "rank": 1,
-                    "username": "TechEducatorDavid",
-                    "score": 5000
-                },
-                {
-                    "rank": 2,
-                    "username": "GrammarGuru",
-                    "score": 4700
-                },
-                {
-                    "rank": 3,
-                    "username": "LinguaAce",
-                    "score": 4500
-                }
-            ]
-        }
+        ]
     }
 ]
