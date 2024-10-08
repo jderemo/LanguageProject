@@ -4,16 +4,25 @@
         "email": "emmamarkman@outlook.com",
         "username": "MarketingEmma",
         "password": "BrandM@ster2024!",
-        "progress": {
-            "progress": 0.4,
-            "completedLessons": [
-                1
-            ],
-            "incompleteLessons": [
-                2,
-                11
-            ]
-        },
+        "progressTrackers": [
+            {
+                "language": "Spanish",
+                "progress": 0.4,
+                "completedLessons": [
+                    1
+                ],
+                "incompleteLessons": [
+                    2,
+                    11
+                ]
+            },
+            {
+                "language": "French",
+                "progress": 0.0,
+                "completedLessons": [],
+                "incompleteLessons": []
+            }
+        ],
         "preferredLanguage": "English",
         "achievements": [
             101
@@ -30,30 +39,33 @@
         "email": "david.anderson@edtechguru.com",
         "username": "TechEducatorDavid",
         "password": "EdTech4Life!",
-        "progress": {
-            "progress": 0.7,
-            "completedLessons": [
-                1,
-                2
-            ],
-            "incompleteLessons": [
-                11
-            ]
-        },
+        "progressTrackers": [
+            {
+                "language": "Spanish",
+                "progress": 0.7,
+                "completedLessons": [
+                    1,
+                    2
+                ],
+                "incompleteLessons": [
+                    11
+                ]
+            },
+            {
+                "language": "French",
+                "progress": 0.0,
+                "completedLessons": [],
+                "incompleteLessons": []
+            }
+        ],
         "preferredLanguage": "Spanish",
         "achievements": [
             101,
             201
         ],
         "achievementDates": [
-            {
-                "id": 101,
-                "date": 1715558400
-            },
-            {
-                "id": 201,
-                "date": 1727740800
-            }
+            1715558400,
+            1727740800
         ]
     }
 ]
