@@ -1,18 +1,12 @@
-public class Dataloader {
+import java.util.ArrayList;
 
+public class Dataloader {
+public static ArrayList<User> getUsers() {
+
+}
     
 } 
-    public static boolean saveUsers(){
+  public static ArrayList<Quiz> getGiz(){
 
-    }
-    public static boolean saveProjects() {
-    
-    }
-    public static JSONObject getProjectJSON(Project project){
-
-    }
-
-    public static JSONObject getColumnJSON(Column column) {
-    }
-
+  }
     
