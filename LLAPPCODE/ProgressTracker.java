@@ -17,8 +17,17 @@ public class ProgressTracker {
     }
 
     // Method Stubs
-    public void updateProgress(String language, int lessonId) {
-        // Logic to update progress based on lesson completion
+    public void updateProgress(int lessonId) {
+        completedLessons.add(lessonId);
+
+        int i = 0;
+        for(int l : incompleteLessons){
+            if (l == lessonId){
+                incompleteLessons.remove(lessonId);
+            }
+            i++;
+        }
+        this.progress = (double) completedLessons.size() / ((double) completedLessons.size() + (double) incompleteLessons.size())
     }
 
     // Getters and Setters

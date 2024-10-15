@@ -1,13 +1,22 @@
 import java.util.ArrayList;
 
 public class UserList {
+    private static UserList instance;
 
     // Variables
     private ArrayList<User> users;
 
     // Constructor
-    public UserList() {
+    private UserList() {
         this.users = new ArrayList<>();
+    }
+
+    public UserList getInstance(){
+        if (instance == null){
+            instance = new UserList();
+        }
+
+        return instance;
     }
 
     // Method to get a user by username
