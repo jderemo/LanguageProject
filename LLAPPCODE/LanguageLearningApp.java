@@ -1,12 +1,12 @@
 import java.util.ArrayList;
-
+import java.util.Scanner;
 public class LanguageLearningApp {
 
     // Variables
     private LessonList lessonList;
     private User user;
     private UserList userList;
-
+    private Scanner kb;
     // Constructor
     public LanguageLearningApp() {
         this.lessonList = new LessonList();
@@ -22,8 +22,18 @@ public class LanguageLearningApp {
 
     // Method to log in a user
     public User login(String username, String password) {
-        // Login logic to authenticate and return the User
-        return userList.authenticate(username, password);
+        System.out.println("Insert Username: ");
+        if(!userList.getUser(username).equals(username))
+            System.out.println("Wrong Username");
+        else
+            userList.getUser(username).equals(username);
+        System.out.println("Insert Password: ");
+        if(!userList.getUser(password).equals(password))
+            System.out.println("Wrong password: ");
+        else
+            userList.getUser(password).equals(password);
+            
+        return user;
     }
 
     // Method to get a progress report
