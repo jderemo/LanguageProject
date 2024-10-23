@@ -1,3 +1,5 @@
+
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.json.simple.JSONArray;
@@ -11,10 +13,8 @@ import java.io.IOException;
 public class DataLoader {
     
     private static final String USERS_FILE = "users.json";
-/**
- * 
- * @return
- */
+
+
     public static ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<>();
         try {
@@ -48,14 +48,12 @@ public class DataLoader {
     }
 
     public static ArrayList<Lesson> getEveryLesson() {
-        ArrayList<Lesson> lessons = new ArrayList<>();
-        // Similar structure as getUsers() using JSON parsing logic
+        ArrayList<Lesson> lessons = new ArrayList<>();  
         return lessons;
     }
 
     public static ArrayList<Achievement> getAchievements() {
-        ArrayList<Achievement> achievements = new ArrayList<>();
-        // Similar structure to parse achievements separately
+        ArrayList<Achievement> achievements = new ArrayList<>(); 
         return achievements;
     }
 
@@ -78,7 +76,7 @@ public class DataLoader {
         return leaderboardScores;
     }
 
-    // Helper method to parse progress tracker
+    // Helper method
     private static ProgressTracker parseProgressTracker(JSONArray progressTrackerJSON) {
         ProgressTracker progressTracker = new ProgressTracker();
         for (Object obj : progressTrackerJSON) {
@@ -112,4 +110,5 @@ public class DataLoader {
         Leaderboard leaderboard = new Leaderboard(userRank, totalScore, achievements);
         return leaderboard;
     }
+
 }

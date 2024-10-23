@@ -10,6 +10,13 @@ public class FillInTheBlank extends Question {
     private Map<String, String> wordBank;
     private String correctAnswer;
 
+    public void FillInTheBlank(String question, String exerciseID, Map<String, String> wordBank, String correctAnswer) {
+        this.question = question;
+        this.exerciseID = exerciseID;
+        this.wordBank = wordBank;
+        this.correctAnswer = correctAnswer;
+    }
+
     public Map<String, String> getWordBank() {
         return wordBank;
     }
@@ -19,10 +26,24 @@ public class FillInTheBlank extends Question {
     }
 
     public void startExercise(String exerciseID) {
+        //System.out.println(question);
+        //System.out.println(userOptions);
+        //Scanner keyboard = new Scanner(System.in);
+        //String userAnswer = keyboard.nextLine();
+        //Then it'll give the checkAnswer the userAnswer to be checked (somehow)
         this.exerciseID = exerciseID;
     }
 
     public boolean checkAnswer(String userAnswer) {
+        /*wordBank.put("word relating to correct answer in sentence", "correct answer"); Test word
+        String correctAnswer = wordBank.get("word relating to correct answer");
+        if (userAnswer == correctAnswer) {
+            System.out.println("Correct!");
+            return true;
+        } else {
+            System.out.println("Incorrect answer!");
+            return false;
+      }  */
         return false;
     }
 

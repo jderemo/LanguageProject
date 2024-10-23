@@ -9,6 +9,13 @@ public class MultipleChoice extends Question {
     private Map<String, String> wordBank; // = new HashMap<>();
     private String correctAnswer;
 
+    public void MultipleChoice(String question, String exerciseID, Map<String, String> wordBank, String correctAnswer) {
+        this.question = question;
+        this.exerciseID = exerciseID;
+        this.wordBank = wordBank;
+        this.correctAnswer = correctAnswer;
+    }
+
     public Map<String, String> getWordBank() {
         return wordBank;
     }
@@ -40,8 +47,7 @@ public class MultipleChoice extends Question {
     }   
      */
     public boolean checkAnswer(String userAnswer) {
-
-        /*wordBank.put("comer", "como");
+        /*wordBank.put("comer", "como"); Test word
         String correctAnswer = wordBank.get("comer");
         if (userAnswer == correctAnswer) {
             System.out.println("Correct!");
@@ -52,6 +58,7 @@ public class MultipleChoice extends Question {
       }  */
         return false;
     }
+
 
     public String getQuestion() {
         return this.question;
@@ -66,8 +73,6 @@ public class MultipleChoice extends Question {
     public String getExerciseID() {
         return this.exerciseID;
     }
-
-    
 
 }
 
