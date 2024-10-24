@@ -10,6 +10,8 @@ public class DataLoader {
 
     private static final String USERS_FILE = "C:\\Users\\solom\\OneDrive\\Desktop\\CSCE247GIT\\src\\Narriation\\speek\\src\\LLAPPJSON\\json\\LLAppUsers.json"; // Adjust the path as necessary
     private static final String LESSONS_FILE = "C:\\Users\\solom\\OneDrive\\Desktop\\CSCE247GIT\\src\\Narriation\\speek\\src\\LLAPPJSON\\json\\LLAppLessons.json";
+    private static final String QUIZZES_FILE = "C:\\Users\\solom\\OneDrive\\Desktop\\CSCE247GIT\\src\\Narriation\\speek\\src\\LLAPPJSON\\json\\LLAppQuiz.json";
+    
     public static ArrayList<User> loadUsers() {
         ArrayList<User> users = new ArrayList<>();
 
@@ -77,6 +79,44 @@ public class DataLoader {
                 JSONObject lessonJSON = (JSONObject) obj;
                 int lessonID = ((Long) lessonJSON.get("lessonID")).intValue();
                 String language = (String) lessonJSON.get("language");
+
+                // Get the difficulty level and convert to enum
+                String difficultyLevelString = (String) lessonJSON.get("difficultyLevel");
+                Difficulty difficultyLevel = Difficulty.valueOf(difficultyLevelString.toUpperCase()); // Ensure it matches the enum case
+
+                String content = (String) lessonJSON.get("content");
+                String duration = (String) lessonJSON.get("duration");
+                JSONArray feedbackListJSON = (JSONArray) lessonJSON.get("feedbackList");
+
+                // Convert JSONArray to ArrayList<String>
+                ArrayList<String> feedbackList = new ArrayList<>();
+                for (Object feedback : feedbackListJSON) {
+                    feedbackList.add((String) feedback);
+                }
+
+                // Create a Lesson object and add it to the list
+                Lesson lesson = new Lesson(lessonID, language, difficultyLevel, content, duration, feedbackList);
+                lessons.add(lesson);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return lessons;
+    }
+
+    public static ArrayList<Lesson> loadQuizzes() {
+        ArrayList<Lesson> lessons = new ArrayList<>();
+
+        try {
+            FileReader reader = new FileReader(QUIZZES_FILE);
+            JSONParser parser = new JSONParser();
+            JSONArray quizzesJSON = (JSONArray) parser.parse(reader);
+
+            for (Object obj : quizzesJSON) {
+                JSONObject quizJSON = (JSONObject) obj;
+                String quizID = (String) quizJSON.get("quizID");
+                ArrayList<Quiz> quizzes = (String) quizJSON.get("language");
 
                 // Get the difficulty level and convert to enum
                 String difficultyLevelString = (String) lessonJSON.get("difficultyLevel");
