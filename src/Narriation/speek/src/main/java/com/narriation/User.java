@@ -23,12 +23,10 @@ public class User {
         this.achievementDates = achievementDates != null ? achievementDates : new ArrayList<>();
     }
 
-    // Method Stubs
+    // Registers a new user if the username and email are unique
     public void register() {
-        // Load existing users
         ArrayList<User> users = DataLoader.loadUsers();
     
-        // Check if username or email already exists
         for (User user : users) {
             if (user.getUsername().equals(this.username)) {
                 System.out.println("Username already exists. Please choose a different username.");
@@ -40,24 +38,25 @@ public class User {
             }
         }
     
-        // If unique, save the new user
         users.add(this); // Add this user to the list
-        DataWriter.saveUsers(users); // Save the updated list
+        DataWriter.saveUsers(users); // Save the updated list to JSON
         System.out.println("Registration successful!");
     }
 
+    // Validates login credentials
     public void login(String username, String email, String password) {
         ArrayList<User> users = DataLoader.loadUsers();
 
-        for(User user : users) {
+        for (User user : users) {
             if (user.getUsername().equals(username) && user.getEmail().equals(email) && user.getPassword().equals(password)) {
                 System.out.println("Login successful!");
                 return;
+            }
         }
+        System.out.println("Login failed. Please check your credentials.");
     }
-    System.out.println("Login failed. Please check your credentials.");
-}
 
+    // Retrieves a user by username
     public User getUser(String username) {
         ArrayList<User> users = DataLoader.loadUsers();
         for (User user : users) {
@@ -68,9 +67,26 @@ public class User {
         return null;
     }
 
-    public String getProgressReport(String language) {
-        // Logic to generate progress report based on language
-        return ""; // Stub return
+    // Retrieves a ProgressTracker by exercise ID
+    public ProgressTracker getProgressTrackerByExerciseID(String exerciseID) {
+        for (ProgressTracker tracker : progressTrackers) {
+            if (tracker.getExerciseID().equals(exerciseID)) {
+                return tracker;
+            }
+        }
+        return null;
+    }
+
+    // Updates the progress for a specific exercise
+    public void updateProgress(ProgressTracker tracker) {
+        ProgressTracker existingTracker = getProgressTrackerByExerciseID(tracker.getExerciseID());
+        if (existingTracker != null) {
+            existingTracker.setProgress(existingTracker.getProgress() + 1.0);
+            System.out.println("Progress updated for exercise: " + tracker.getExerciseID());
+        } else {
+            addProgressTracker(tracker);
+            System.out.println("Added and updated progress for new exercise: " + tracker.getExerciseID());
+        }
     }
 
     // Getters and Setters
@@ -106,9 +122,6 @@ public class User {
         this.password = password;
     }
 
-    public ArrayList<ProgressTracker> getProgressTrackers() {
-        return progressTrackers;
-    }
 
     public void setProgressTrackers(ArrayList<ProgressTracker> progressTrackers) {
         this.progressTrackers = progressTrackers;
@@ -137,4 +150,16 @@ public class User {
     public void setAchievementDates(ArrayList<Integer> achievementDates) {
         this.achievementDates = achievementDates;
     }
+
+    public ArrayList<ProgressTracker> getProgressTrackers() {
+        return progressTrackers;
+    }
+
+    public void addProgressTracker(ProgressTracker tracker) {
+        if (progressTrackers == null) {
+            progressTrackers = new ArrayList<>();
+        }
+        progressTrackers.add(tracker);
+    }
+
 }

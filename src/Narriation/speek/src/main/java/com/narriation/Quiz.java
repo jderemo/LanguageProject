@@ -41,6 +41,7 @@ public class Quiz {
     public void gradeQuiz() {
         result = "Score: " + score + "/" + questionsList.size();
         System.out.println(result);
+        int score = 0;
     }
 
     public void chooseQuiz(String userChoice, List<Quiz> availableQuizzes) {

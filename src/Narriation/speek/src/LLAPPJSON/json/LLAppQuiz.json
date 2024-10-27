@@ -18,26 +18,110 @@
                     "conjugation"
                 ],
                 "correctAnswer": "como"
+            },
+            {
+                "exerciseID": "SPMultipleChoice2",
+                "question": "Which of the following is the correct plural form of 'el libro' (the book)?",
+                "userOptions": [
+                    "los libros",
+                    "las libro",
+                    "el libros",
+                    "libros"
+                ],
+                "wordBank": [
+                    "libro",
+                    "plural",
+                    "correct form"
+                ],
+                "correctAnswer": "los libros"
+            },
+            {
+                "exerciseID": "SPTrueFalse1",
+                "question": "Spanish is the most widely spoken language in the world.",
+                "correctAnswer": "True"
+            },
+            {
+                "exerciseID": "SPMultipleChoice3",
+                "question": "What does 'gracias' mean in English?",
+                "userOptions": [
+                    "Hello",
+                    "Goodbye",
+                    "Thank you",
+                    "Please"
+                ],
+                "wordBank": [
+                    "gracias",
+                    "translation",
+                    "English"
+                ],
+                "correctAnswer": "Thank you"
+            },
+            {
+                "exerciseID": "SPTrueFalse2",
+                "question": "The word 'perro' means cat in Spanish.",
+                "correctAnswer": "False"
             }
         ]
     },
     {
-        "quizID": "Spanish5",
+        "quizID": "Spanish2",
         "questionsList": [
             {
-                "exerciseID": "SPFillInTheBlank2",
-                "question": "Fill in the blank: Es importante que ellos ______ (haber) terminado el proyecto antes de la reunión.",
+                "exerciseID": "SPMultipleChoice4",
+                "question": "What is the correct translation for 'I am hungry'?",
                 "userOptions": [
-                    "hayan",
-                    "han",
-                    "habrán",
-                    "haya",
-                    "haber"
+                    "Yo estoy hambre",
+                    "Yo tengo hambre",
+                    "Yo hambre",
+                    "Tengo yo hambre"
                 ],
                 "wordBank": [
-                    "haber, third-person, plural"
+                    "hungry",
+                    "translation",
+                    "correct form"
                 ],
-                "correctAnswer": "hayan"
+                "correctAnswer": "Yo tengo hambre"
+            },
+            {
+                "exerciseID": "SPMultipleChoice5",
+                "question": "What is the capital of Spain?",
+                "userOptions": [
+                    "Barcelona",
+                    "Madrid",
+                    "Sevilla",
+                    "Valencia"
+                ],
+                "wordBank": [
+                    "capital",
+                    "Spain"
+                ],
+                "correctAnswer": "Madrid"
+            },
+            {
+                "exerciseID": "SPTrueFalse3",
+                "question": "The word 'mesa' means table in Spanish.",
+                "correctAnswer": "True"
+            },
+            {
+                "exerciseID": "SPMultipleChoice6",
+                "question": "How do you say 'goodbye' in Spanish?",
+                "userOptions": [
+                    "Hola",
+                    "Adiós",
+                    "Por favor",
+                    "Gracias"
+                ],
+                "wordBank": [
+                    "goodbye",
+                    "translation",
+                    "Spanish"
+                ],
+                "correctAnswer": "Adiós"
+            },
+            {
+                "exerciseID": "SPTrueFalse4",
+                "question": "The word 'verde' means red in Spanish.",
+                "correctAnswer": "False"
             }
         ]
     }

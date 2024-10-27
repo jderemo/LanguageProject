@@ -1,37 +1,25 @@
 package com.narriation;
 
-import java.util.ArrayList;
-
 public class ProgressTracker {
+    private String exerciseID;   // Field to hold exercise ID
+    private double progress;     // Field to hold the progress value
+    private int userID;          // Field to hold user ID
+    private String language;     // Field to hold language
 
-    // Variables
-    private String language;
-    private double progress;
-    private ArrayList<Lesson> completedLessons;
-    private ArrayList<Lesson> incompleteLessons;
-
-    // Constructor
-    public ProgressTracker(String lessonID, double progress) {
-        this.language = language;
-        this.progress = 0.0;
-        this.completedLessons = new ArrayList<>();
-        this.incompleteLessons = new ArrayList<>();
-    }
-
-    // Method Stubs
-    public void updateProgress(String language, int lessonId) {
-        // Logic to update progress based on lesson completion
-    }
-
-    // Getters and Setters
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
+    // Constructor with language parameter
+    public ProgressTracker(String exerciseID, double progress, int userID, String language) {
+        this.exerciseID = exerciseID;
+        this.progress = progress;
+        this.userID = userID;
         this.language = language;
     }
 
+    // Getter for exerciseID
+    public String getExerciseID() {
+        return exerciseID;
+    }
+
+    // Getter for progress
     public double getProgress() {
         return progress;
     }
@@ -40,19 +28,22 @@ public class ProgressTracker {
         this.progress = progress;
     }
 
-    public ArrayList<Lesson> getCompletedLessons() {
-        return completedLessons;
+    // Getter for userID
+    public int getUserID() {
+        return userID;
     }
 
-    public void setCompletedLessons(ArrayList<Lesson> completedLessons) {
-        this.completedLessons = completedLessons;
+    // Getter for language
+    public String getLanguage() {
+        return language;
     }
 
-    public ArrayList<Lesson> getIncompleteLessons() {
-        return incompleteLessons;
+    // Method to update progress
+    public void updateProgress(double increment) {
+        this.progress += increment;  // Increment progress
     }
 
-    public void setIncompleteLessons(ArrayList<Lesson> incompleteLessons) {
-        this.incompleteLessons = incompleteLessons;
+    public void increaseProgress(double amount) {
+        this.progress += amount; // Assuming progress is a field in ProgressTracker
     }
 }

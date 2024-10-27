@@ -27,23 +27,11 @@ public class DataWriter {
             JSONArray progressTrackersJSON = new JSONArray();
             for (ProgressTracker tracker : user.getProgressTrackers()) {
                 JSONObject trackerJSON = new JSONObject();
-                // Add properties of tracker to trackerJSON
+                trackerJSON.put("exerciseID", tracker.getExerciseID()); 
+                trackerJSON.put("progress", tracker.getProgress()); 
                 progressTrackersJSON.add(trackerJSON);
             }
             userJSON.put("progressTrackers", progressTrackersJSON);
-
-            // Save achievements
-            JSONArray achievementsJSON = new JSONArray();
-            for (Achievement achievement : user.getAchievements()) {
-                JSONObject achievementJSON = new JSONObject();
-                achievementJSON.put("achievementID", achievement.getAchievementID());
-                achievementJSON.put("title", achievement.getTitle());
-                achievementJSON.put("description", achievement.getDescription());
-                achievementJSON.put("dateAchieved", achievement.getDateAchieved());
-                achievementJSON.put("score", achievement.getScore());
-                achievementsJSON.add(achievementJSON);
-            }
-            userJSON.put("achievements", achievementsJSON);
 
             usersJSON.add(userJSON);
         }
@@ -97,5 +85,33 @@ public class DataWriter {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    // Method to update progress for a user in the JSON file
+    public static void updateProgress(ProgressTracker tracker) {
+        ArrayList<User> users = DataLoader.loadUsers(); // Load existing users
+        for (User user : users) {
+            if (user.getUserID() == tracker.getUserID()) { 
+                ProgressTracker existingTracker = user.getProgressTrackerByExerciseID(tracker.getExerciseID());
+                if (existingTracker != null) {
+                    existingTracker.setProgress(tracker.getProgress()); // Update the existing tracker
+                } else {
+                    user.addProgressTracker(tracker); // Add as a new tracker
+                }
+                break;
+            }
+        }
+        saveUsers(users); // Save updated user list back to the JSON
+    }
+
+    public static void saveProgress(User user) {
+        ArrayList<User> users = DataLoader.loadUsers(); // Load existing users
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getUserID() == user.getUserID()) { // Assuming userID is how we identify users
+                users.set(i, user); // Update the user in the list
+                break;
+            }
+        }
+        saveUsers(users); // Save the updated user list back to the JSON file
     }
 }

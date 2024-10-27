@@ -15,29 +15,29 @@ public class DataLoader {
     
     public static ArrayList<User> loadUsers() {
         ArrayList<User> users = new ArrayList<>();
-
+    
         try {
             FileReader reader = new FileReader(USERS_FILE);
             JSONParser parser = new JSONParser();
             JSONArray usersJSON = (JSONArray) parser.parse(reader);
-
+    
             for (Object obj : usersJSON) {
                 JSONObject userJSON = (JSONObject) obj;
-                
+    
                 int userID = ((Long) userJSON.get("userID")).intValue();
                 String email = (String) userJSON.get("email");
                 String username = (String) userJSON.get("username");
                 String password = (String) userJSON.get("password");
                 String preferredLanguage = (String) userJSON.get("preferredLanguage");
-
+    
                 // Load progress trackers
                 JSONArray progressTrackerJSON = (JSONArray) userJSON.get("progressTrackers");
-                ArrayList<ProgressTracker> progressTrackers = parseProgressTracker(progressTrackerJSON);
-
+                ArrayList<ProgressTracker> progressTrackers = parseProgressTracker(progressTrackerJSON, userID); // Updated
+    
                 // Load achievements
                 JSONArray achievementsJSON = (JSONArray) userJSON.get("achievements");
                 ArrayList<Achievement> achievements = parseAchievements(achievementsJSON);
-
+    
                 // Create user and add to the list
                 User user = new User(userID, username, email, password, preferredLanguage, 
                                      progressTrackers, achievements);
@@ -46,18 +46,28 @@ public class DataLoader {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+    
         return users; // Return the list of users
     }
+    
 
-    private static ArrayList<ProgressTracker> parseProgressTracker(JSONArray progressTrackerJSON) {
+    private static ArrayList<ProgressTracker> parseProgressTracker(JSONArray progressTrackerJSON, int userID) {
         ArrayList<ProgressTracker> progressTrackers = new ArrayList<>();
         
-        // Supposed to implement parsing logic similar to the users load process
-        // Needs logic to convert progressTrackerJSON to ProgressTracker objects
-
+        if (progressTrackerJSON != null) {
+            for (Object obj : progressTrackerJSON) {
+                JSONObject trackerJSON = (JSONObject) obj;
+                String exerciseID = (String) trackerJSON.get("exerciseID");
+                double progress = ((Number) trackerJSON.get("progress")).doubleValue();
+                String language = (String) trackerJSON.get("language");
+                ProgressTracker tracker = new ProgressTracker(exerciseID, progress, userID, language); // Pass userID here
+                progressTrackers.add(tracker);
+            }
+        }
+        
         return progressTrackers; // Return the list of progress trackers
     }
+    
 
     private static ArrayList<Achievement> parseAchievements(JSONArray achievementsJSON) {
         ArrayList<Achievement> achievements = new ArrayList<>();
@@ -125,9 +135,6 @@ public class DataLoader {
         return lessons;
     }
     
-    
-    
-
     public static ArrayList<Quiz> loadQuizzes() {
         ArrayList<Quiz> quizzes = new ArrayList<>();
     
@@ -151,27 +158,28 @@ public class DataLoader {
                     // Parse userOptions
                     JSONArray userOptionsJSON = (JSONArray) questionJSON.get("userOptions");
                     List<String> userOptions = new ArrayList<>();
-                    for (Object option : userOptionsJSON) {
-                        userOptions.add((String) option);
+                    if (userOptionsJSON != null) {
+                        for (Object option : userOptionsJSON) {
+                            userOptions.add((String) option);
+                        }
                     }
     
-                    // Parse wordBank
-                    JSONArray wordBankJSON = (JSONArray) questionJSON.get("wordBank");
-                    List<String> wordBank = new ArrayList<>();
-                    for (Object word : wordBankJSON) {
-                        wordBank.add((String) word);
-                    }
-    
+                    // Parse correctAnswer
                     String correctAnswer = (String) questionJSON.get("correctAnswer");
     
                     // Determine question type and instantiate
-                    if (questionJSON.containsKey("userOptions")) {
+                    if (userOptions != null && !userOptions.isEmpty()) {
+                        // It's a multiple choice question
                         MultipleChoice mcQuestion = new MultipleChoice(questionText, exerciseID, userOptions, correctAnswer);
                         questionsList.add(mcQuestion);
+                    } else if (exerciseID.contains("FillInTheBlank")) {
+                        // It's a fill-in-the-blank question
+                        FillInTheBlank fillInTheBlankQuestion = new FillInTheBlank(questionText, exerciseID, userOptions, correctAnswer);
+                        questionsList.add(fillInTheBlankQuestion);
                     } else {
-                        // Assuming FillInTheBlank structure; adjust as necessary
-                        FillInTheBlank fbQuestion = new FillInTheBlank(questionText, exerciseID, userOptions, correctAnswer);
-                        questionsList.add(fbQuestion);
+                        // It's a true/false question; no user options expected
+                        TrueOrFalse tfQuestion = new TrueOrFalse(questionText, exerciseID, userOptions, correctAnswer);
+                        questionsList.add(tfQuestion);
                     }
                 }
     

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Lesson {
-    Scanner keyboard = new Scanner(System.in);
+    private Scanner keyboard = new Scanner(System.in);
     // Variables
     private int lessonID;
     private String language;
@@ -24,18 +24,13 @@ public class Lesson {
         this.questions = questions != null ? questions : new ArrayList<>(); // Initialize the questions list
     }
 
-    public void startLesson(String exerciseID, ArrayList<Quiz> quizzes) {
-        for (Quiz quiz : quizzes) {
-            for (Question question : quiz.getQuestion()) {
-                if (question.getExerciseID().equals(exerciseID)) {
-                    System.out.println(question.getQuestion());  // Prints the question text
-                    return;  // Exit once the question is found
-                }
-            }
-        }
-        System.out.println("Question not found for exerciseID: " + exerciseID);  // If no match found
+    public void startLesson() {
+        // Display lesson content
+        System.out.println("Lesson Content: " + this.content);
+        System.out.println("Duration: " + this.duration);
+        
+        // Optionally, you can add code here to allow the user to choose a quiz or proceed in another way.
     }
-    
     
     // Getters and Setters
     public int getLessonID() {
@@ -81,4 +76,10 @@ public class Lesson {
     public List<Question> getQuestions() {
         return questions;
     }
+    public void displayContent() {
+        System.out.println("Lesson Content: " + content); // Assuming 'content' holds the lesson content
+        System.out.println("Duration: " + duration);
+        System.out.println("Difficulty Level: " + difficultyLevel);
+    }
+
 }
