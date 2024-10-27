@@ -1,58 +1,80 @@
 package com.narriation;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Quiz {
-
-    // Variables
     private String quizID;
-    private ArrayList<Question> questionsList;
+    private List<Question> questionsList;
     private String result;
+    private int score;
 
-    // Constructor
-    public Quiz(String quizID) {
+    public Quiz(String quizID, List<Question> questionsList) {
         this.quizID = quizID;
-        this.questionsList = new ArrayList<>();
+        this.questionsList = questionsList;
         this.result = "";
+        this.score = 0;
     }
 
-    // Method to start the quiz
     public void startQuiz() {
-        // Logic to start the quiz
+        Scanner scanner = new Scanner(System.in);
+        for (int i = 0; i < questionsList.size(); i++) {
+            Question question = questionsList.get(i);
+            System.out.println("Question " + (i + 1) + ": " + question.getQuestion());
+            if (question instanceof MultipleChoice) {
+                System.out.println("Options: " + ((MultipleChoice) question).getUserOptions());
+            }
+
+            System.out.print("Your answer: ");
+            String userAnswer = scanner.nextLine();
+
+            if (checkAnswer(userAnswer, i)) {
+                System.out.println("Correct!");
+                score++;
+            } else {
+                System.out.println("Incorrect. The correct answer was: " + question.getAnswer());
+            }
+        }
+        gradeQuiz();
     }
 
-    // Method to grade the quiz
     public void gradeQuiz() {
-        // Logic to grade the quiz and set the result
+        result = "Score: " + score + "/" + questionsList.size();
+        System.out.println(result);
     }
 
-    // Method to choose a quiz based on user choice
-    public void chooseQuiz(String userChoice) {
-        // Logic to choose a quiz based on user input
+    public void chooseQuiz(String userChoice, List<Quiz> availableQuizzes) {
+        for (Quiz quiz : availableQuizzes) {
+            if (quiz.getQuizID().equals(userChoice)) {
+                quiz.startQuiz();
+                return;
+            }
+        }
+        System.out.println("Quiz not found.");
     }
 
-    // Method to get the current question
+    public String getQuizID() {
+        return quizID;
+    }
+
     public String getQuestion(int index) {
         if (index >= 0 && index < questionsList.size()) {
             return questionsList.get(index).getQuestion();
         }
-        return null; // Return null if index is out of bounds
+        return null;
     }
 
-    // Method to check the user's answer
     public boolean checkAnswer(String userAnswer, int index) {
         if (index >= 0 && index < questionsList.size()) {
-            return questionsList.get(index).getCorrectAnswer().equalsIgnoreCase(userAnswer);
+            return questionsList.get(index).getAnswer().equalsIgnoreCase(userAnswer);
         }
-        return false; // Return false if index is out of bounds
+        return false;
     }
 
-    // Method to get the quiz grade
     public String getQuizGrade() {
-        return result; // Return the result of the quiz
+        return result;
     }
 
-    // Method to add questions to the quiz
     public void addQuestion(Question question) {
         questionsList.add(question);
     }

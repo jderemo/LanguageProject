@@ -1,18 +1,18 @@
 package com.narriation;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Question {
 
-    private static Map<String, String> wordBank = new HashMap<>();
+    private static List<String> wordBank = new ArrayList<>();
 
-    public Map<String, String> getWordBank() {
+    public List<String> getWordBank() {
         return wordBank;
     }
 
-    public static void expandWordBank(String englishWord, String translatedWord) {
-        wordBank.put(englishWord, translatedWord);
+    public static void expandWordBank(String correctAnswer) {
+        wordBank.add(correctAnswer);
     }
 
     public abstract void startExercise(String exerciseID);
@@ -24,5 +24,6 @@ public abstract class Question {
     public abstract String getAnswer();
 
     public abstract String getExerciseID();
-    
+
+    public abstract List<String> getUserOptions();
 }

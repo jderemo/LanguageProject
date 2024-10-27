@@ -1,68 +1,29 @@
 [
     {
+        "password": "BrandM@ster2024!",
+        "preferredLanguage": "English",
+        "achievements": [],
+        "progressTrackers": [],
         "userID": 1,
         "email": "emmamarkman@outlook.com",
-        "username": "MarketingEmma",
-        "password": "BrandM@ster2024!",
-        "progressTrackers": [
-            {
-                "language": "Spanish",
-                "progress": 0.4,
-                "completedLessons": [
-                    1
-                ],
-                "incompleteLessons": [
-                    2,
-                    11
-                ]
-            },
-            {
-                "language": "French",
-                "progress": 0.0,
-                "completedLessons": [],
-                "incompleteLessons": []
-            }
-        ],
-        "preferredLanguage": "English",
-        "achievements": [
-            101
-        ],
-        "achievementDates": [
-            1727827200
-        ]
+        "username": "MarketingEmma"
     },
     {
+        "password": "EdTech4Life!",
+        "preferredLanguage": "Spanish",
+        "achievements": [],
+        "progressTrackers": [],
         "userID": 2,
         "email": "david.anderson@edtechguru.com",
-        "username": "TechEducatorDavid",
-        "password": "EdTech4Life!",
-        "progressTrackers": [
-            {
-                "language": "Spanish",
-                "progress": 0.7,
-                "completedLessons": [
-                    1,
-                    2
-                ],
-                "incompleteLessons": [
-                    11
-                ]
-            },
-            {
-                "language": "French",
-                "progress": 0.0,
-                "completedLessons": [],
-                "incompleteLessons": []
-            }
-        ],
-        "preferredLanguage": "Spanish",
-        "achievements": [
-            101,
-            201
-        ],
-        "achievementDates": [
-            1715558400,
-            1727740800
-        ]
+        "username": "TechEducatorDavid"
+    },
+    {
+        "password": "password",
+        "preferredLanguage": "English",
+        "achievements": [],
+        "progressTrackers": [],
+        "userID": 0,
+        "email": "solomon@gmail.com",
+        "username": "solomontest"
     }
 ]

@@ -63,12 +63,25 @@ public class DataWriter {
             lessonJSON.put("content", lesson.getContent());
             lessonJSON.put("duration", lesson.getDuration());
 
-            // Save feedback list
-            JSONArray feedbackListJSON = new JSONArray();
-            for (String feedback : lesson.getFeedbackList()) {
-                feedbackListJSON.add(feedback);
+            // Save questions list
+            JSONArray questionsListJSON = new JSONArray();
+            for (Question question : lesson.getQuestions()) {
+                JSONObject questionJSON = new JSONObject();
+                questionJSON.put("question", question.getQuestion());
+                questionJSON.put("exerciseID", question.getExerciseID());
+                questionJSON.put("correctAnswer", question.getAnswer());
+
+                // Save user options
+                JSONArray userOptionsJSON = new JSONArray();
+                for (String option : question.getUserOptions()) {
+                    userOptionsJSON.add(option);
+                }
+                questionJSON.put("userOptions", userOptionsJSON);
+
+                // Add the question to the list
+                questionsListJSON.add(questionJSON);
             }
-            lessonJSON.put("feedbackList", feedbackListJSON);
+            lessonJSON.put("questionsList", questionsListJSON);
 
             lessonsJSON.add(lessonJSON);
         }

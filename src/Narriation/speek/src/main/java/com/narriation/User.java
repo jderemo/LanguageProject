@@ -25,7 +25,25 @@ public class User {
 
     // Method Stubs
     public void register() {
-        // Registration logic here
+        // Load existing users
+        ArrayList<User> users = DataLoader.loadUsers();
+    
+        // Check if username or email already exists
+        for (User user : users) {
+            if (user.getUsername().equals(this.username)) {
+                System.out.println("Username already exists. Please choose a different username.");
+                return;
+            }
+            if (user.getEmail().equals(this.email)) {
+                System.out.println("Email already registered. Please use a different email.");
+                return;
+            }
+        }
+    
+        // If unique, save the new user
+        users.add(this); // Add this user to the list
+        DataWriter.saveUsers(users); // Save the updated list
+        System.out.println("Registration successful!");
     }
 
     public void login(String username, String email, String password) {

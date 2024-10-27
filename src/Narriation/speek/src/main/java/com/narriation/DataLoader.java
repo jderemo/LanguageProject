@@ -1,6 +1,7 @@
 package com.narriation;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -69,77 +70,120 @@ public class DataLoader {
 
     public static ArrayList<Lesson> loadLessons() {
         ArrayList<Lesson> lessons = new ArrayList<>();
-
+    
         try {
             FileReader reader = new FileReader(LESSONS_FILE);
             JSONParser parser = new JSONParser();
             JSONArray lessonsJSON = (JSONArray) parser.parse(reader);
-
+    
             for (Object obj : lessonsJSON) {
                 JSONObject lessonJSON = (JSONObject) obj;
                 int lessonID = ((Long) lessonJSON.get("lessonID")).intValue();
                 String language = (String) lessonJSON.get("language");
-
+    
                 // Get the difficulty level and convert to enum
                 String difficultyLevelString = (String) lessonJSON.get("difficultyLevel");
-                Difficulty difficultyLevel = Difficulty.valueOf(difficultyLevelString.toUpperCase()); // Ensure it matches the enum case
-
+                Difficulty difficultyLevel = Difficulty.valueOf(difficultyLevelString.toUpperCase());
+    
                 String content = (String) lessonJSON.get("content");
                 String duration = (String) lessonJSON.get("duration");
-                JSONArray feedbackListJSON = (JSONArray) lessonJSON.get("feedbackList");
+    
+                // Check if questionsList is present and not null
+                JSONArray questionsListJSON = (JSONArray) lessonJSON.get("questionsList");
+                List<Question> questions = new ArrayList<>();
 
-                // Convert JSONArray to ArrayList<String>
-                ArrayList<String> feedbackList = new ArrayList<>();
-                for (Object feedback : feedbackListJSON) {
-                    feedbackList.add((String) feedback);
+                if (questionsListJSON != null) {  // Null check
+                    for (Object questionObj : questionsListJSON) {
+                        JSONObject questionJSON = (JSONObject) questionObj;
+                        String questionText = (String) questionJSON.get("question");
+                        String exerciseID = (String) questionJSON.get("exerciseID");
+                        String correctAnswer = (String) questionJSON.get("correctAnswer");
+                        JSONArray userOptionsJSON = (JSONArray) questionJSON.get("userOptions");
+    
+                        List<String> userOptions = new ArrayList<>();
+                        for (Object option : userOptionsJSON) {
+                            userOptions.add((String) option);
+                        }
+    
+                        // Check type to instantiate the correct Question subclass
+                        if (exerciseID.contains("MultipleChoice")) {
+                            questions.add(new MultipleChoice(questionText, exerciseID, userOptions, correctAnswer));
+                        } else if (exerciseID.contains("FillInTheBlank")) {
+                            questions.add(new FillInTheBlank(questionText, exerciseID, userOptions, correctAnswer));
+                        }
+                    }
                 }
-
-                // Create a Lesson object and add it to the list
-                Lesson lesson = new Lesson(lessonID, language, difficultyLevel, content, duration, feedbackList);
+    
+                // Create and add the Lesson
+                Lesson lesson = new Lesson(lessonID, language, difficultyLevel, content, duration, questions);
                 lessons.add(lesson);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+    
         return lessons;
     }
+    
+    
+    
 
-    public static ArrayList<Lesson> loadQuizzes() {
-        ArrayList<Lesson> lessons = new ArrayList<>();
-
+    public static ArrayList<Quiz> loadQuizzes() {
+        ArrayList<Quiz> quizzes = new ArrayList<>();
+    
         try {
             FileReader reader = new FileReader(QUIZZES_FILE);
             JSONParser parser = new JSONParser();
             JSONArray quizzesJSON = (JSONArray) parser.parse(reader);
-
+    
             for (Object obj : quizzesJSON) {
                 JSONObject quizJSON = (JSONObject) obj;
                 String quizID = (String) quizJSON.get("quizID");
-                ArrayList<Quiz> quizzes = (String) quizJSON.get("language");
-
-                // Get the difficulty level and convert to enum
-                String difficultyLevelString = (String) lessonJSON.get("difficultyLevel");
-                Difficulty difficultyLevel = Difficulty.valueOf(difficultyLevelString.toUpperCase()); // Ensure it matches the enum case
-
-                String content = (String) lessonJSON.get("content");
-                String duration = (String) lessonJSON.get("duration");
-                JSONArray feedbackListJSON = (JSONArray) lessonJSON.get("feedbackList");
-
-                // Convert JSONArray to ArrayList<String>
-                ArrayList<String> feedbackList = new ArrayList<>();
-                for (Object feedback : feedbackListJSON) {
-                    feedbackList.add((String) feedback);
+                JSONArray questionsListJSON = (JSONArray) quizJSON.get("questionsList");
+    
+                List<Question> questionsList = new ArrayList<>();
+    
+                for (Object questionObj : questionsListJSON) {
+                    JSONObject questionJSON = (JSONObject) questionObj;
+                    String exerciseID = (String) questionJSON.get("exerciseID");
+                    String questionText = (String) questionJSON.get("question");
+    
+                    // Parse userOptions
+                    JSONArray userOptionsJSON = (JSONArray) questionJSON.get("userOptions");
+                    List<String> userOptions = new ArrayList<>();
+                    for (Object option : userOptionsJSON) {
+                        userOptions.add((String) option);
+                    }
+    
+                    // Parse wordBank
+                    JSONArray wordBankJSON = (JSONArray) questionJSON.get("wordBank");
+                    List<String> wordBank = new ArrayList<>();
+                    for (Object word : wordBankJSON) {
+                        wordBank.add((String) word);
+                    }
+    
+                    String correctAnswer = (String) questionJSON.get("correctAnswer");
+    
+                    // Determine question type and instantiate
+                    if (questionJSON.containsKey("userOptions")) {
+                        MultipleChoice mcQuestion = new MultipleChoice(questionText, exerciseID, userOptions, correctAnswer);
+                        questionsList.add(mcQuestion);
+                    } else {
+                        // Assuming FillInTheBlank structure; adjust as necessary
+                        FillInTheBlank fbQuestion = new FillInTheBlank(questionText, exerciseID, userOptions, correctAnswer);
+                        questionsList.add(fbQuestion);
+                    }
                 }
-
-                // Create a Lesson object and add it to the list
-                Lesson lesson = new Lesson(lessonID, language, difficultyLevel, content, duration, feedbackList);
-                lessons.add(lesson);
+    
+                // Create a Quiz object and add it to the list
+                Quiz quiz = new Quiz(quizID, questionsList);
+                quizzes.add(quiz);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return lessons;
+    
+        return quizzes;
     }
+    
 }
