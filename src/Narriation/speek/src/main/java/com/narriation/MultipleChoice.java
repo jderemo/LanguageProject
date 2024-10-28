@@ -15,19 +15,12 @@ public class MultipleChoice extends Question {
         this.exerciseID = exerciseID;
         this.userOptions = userOptions;
         this.correctAnswer = correctAnswer;
-        this.wordBank = wordBank;
-        expandWordBank(correctAnswer); // Add the correct answer to the wordBank list
     }
 
     @Override
     public void startExercise(String exerciseID) {
         // Implementation for starting the exercise
         this.exerciseID = exerciseID;
-    }
-
-    @Override
-    public boolean checkAnswer(String userAnswer) {
-        return getWordBank().contains(userAnswer); // Check if the userAnswer is in wordBank
     }
 
     @Override
@@ -49,6 +42,7 @@ public class MultipleChoice extends Question {
     public List<String> getUserOptions() {
         return this.userOptions;
     }
+
 
     
 }

@@ -12,6 +12,7 @@ public class DataWriter {
     private static final String LESSONS_FILE = "C:\\Users\\solom\\OneDrive\\Desktop\\CSCE247GIT\\src\\Narriation\\speek\\src\\LLAPPJSON\\json\\LLAppLessons.json";
 
     // Write users to file
+    @SuppressWarnings("unchecked")
     public static void saveUsers(ArrayList<User> users) {
         JSONArray usersJSON = new JSONArray();
 
@@ -40,6 +41,7 @@ public class DataWriter {
     }
 
     // Write lessons to file
+    @SuppressWarnings("unchecked")
     public static void saveLessons(ArrayList<Lesson> lessons) {
         JSONArray lessonsJSON = new JSONArray();
 
@@ -77,7 +79,7 @@ public class DataWriter {
         writeToFile(LESSONS_FILE, lessonsJSON);
     }
 
-    // Utility method to write JSON data to a file
+    // Method to write JSON data to a file
     private static void writeToFile(String filePath, JSONArray data) {
         try (FileWriter file = new FileWriter(filePath)) {
             file.write(data.toJSONString());
@@ -107,7 +109,7 @@ public class DataWriter {
     public static void saveProgress(User user) {
         ArrayList<User> users = DataLoader.loadUsers(); // Load existing users
         for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getUserID() == user.getUserID()) { // Assuming userID is how we identify users
+            if (users.get(i).getUserID() == user.getUserID()) {
                 users.set(i, user); // Update the user in the list
                 break;
             }

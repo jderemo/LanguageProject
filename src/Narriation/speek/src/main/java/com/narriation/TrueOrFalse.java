@@ -16,8 +16,6 @@ public class TrueOrFalse extends Question {
         this.exerciseID = exerciseID;
         this.userOptions = userOptions;
         this.correctAnswer = correctAnswer;
-        this.wordBank = wordBank;
-        expandWordBank(correctAnswer); // Add the correct answer to the wordBank list
     }
 
     @Override
@@ -30,11 +28,6 @@ public class TrueOrFalse extends Question {
         return this.correctAnswer;
     }
 
-    @Override
-    public boolean checkAnswer(String userAnswer) {
-        return getWordBank().contains(userAnswer); // Check if the userAnswer is in wordBank    }
-    }
-    
     @Override
     public String getExerciseID() {
         return this.exerciseID;

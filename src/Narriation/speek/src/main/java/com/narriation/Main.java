@@ -118,7 +118,6 @@ public class Main {
                     System.out.println("Invalid quiz ID. Try again.");
                     continue;
                 }
-
                 // Start the quiz
                 System.out.println("Selected quiz: " + selectedQuiz.getQuizID());
                 selectedQuiz.startQuiz();
@@ -126,12 +125,15 @@ public class Main {
                 // Grade the quiz
                 selectedQuiz.gradeQuiz();
                 System.out.println("Quiz result: " + selectedQuiz.getQuizGrade());
-                System.out.println("If you passed, you can proceed! Otherwise, retake the quiz.");
+                System.out.println("Suggested scoring 4/5 or above to progress to the next quiz. Otherwise, retake the quiz.");
 
                 // Ask if they want to take another quiz
                 System.out.print("Take another quiz? (y/n): ");
                 String tryAnotherQuiz = keyboard.nextLine();
-                if (tryAnotherQuiz.equalsIgnoreCase("n")) {
+                if (tryAnotherQuiz.equalsIgnoreCase("y")) {
+                    keepQuizzing = true;
+                }
+                else if (tryAnotherQuiz.equalsIgnoreCase("n")) {
                     keepQuizzing = false; // Stop quizzing
                 }
             }
@@ -144,7 +146,6 @@ public class Main {
                 System.out.println("Goodbye!");
             }
         }
-
         keyboard.close(); // Close the scanner
     }
 }
