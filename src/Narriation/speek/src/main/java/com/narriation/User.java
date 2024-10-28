@@ -3,6 +3,7 @@ package com.narriation;
 import java.util.ArrayList;
 
 public class User {
+
     private int userID;
     private String username;
     private String password;
@@ -26,7 +27,7 @@ public class User {
     // Registers a new user if the username and email are unique
     public void register() {
         ArrayList<User> users = DataLoader.loadUsers();
-    
+
         for (User user : users) {
             if (user.getUsername().equals(this.username)) {
                 System.out.println("Username already exists. Please choose a different username.");
@@ -37,7 +38,7 @@ public class User {
                 return;
             }
         }
-    
+
         users.add(this); // Add this user to the list
         DataWriter.saveUsers(users); // Save the updated list to JSON
         System.out.println("Registration successful!");
@@ -121,7 +122,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
     public void setProgressTrackers(ArrayList<ProgressTracker> progressTrackers) {
         this.progressTrackers = progressTrackers;

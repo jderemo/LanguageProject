@@ -78,7 +78,6 @@ public class Lesson {
     }
     public void displayContent() {
         System.out.println("Lesson Content: " + content); // Assuming 'content' holds the lesson content
-        Narriator.playSound(content);
         System.out.println("Duration: " + duration);
         System.out.println("Difficulty Level: " + difficultyLevel);
     }
