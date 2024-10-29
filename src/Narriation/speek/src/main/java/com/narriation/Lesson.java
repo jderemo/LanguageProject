@@ -27,6 +27,7 @@ public class Lesson {
     public void startLesson() {
         // Display lesson content
         System.out.println("Lesson Content: " + this.content);
+        Narriator.playSound(content);
         System.out.println("Duration: " + this.duration);
         
         // Optionally, you can add code here to allow the user to choose a quiz or proceed in another way.
@@ -78,6 +79,7 @@ public class Lesson {
     }
     public void displayContent() {
         System.out.println("Lesson Content: " + content); // Assuming 'content' holds the lesson content
+        Narriator.playSound(content);
         System.out.println("Duration: " + duration);
         System.out.println("Difficulty Level: " + difficultyLevel);
     }

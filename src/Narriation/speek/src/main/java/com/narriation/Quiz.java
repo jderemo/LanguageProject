@@ -21,6 +21,7 @@ public class Quiz {
         for (int i = 0; i < questionsList.size(); i++) {
             Question question = questionsList.get(i);
             System.out.println("Question " + (i + 1) + ": " + question.getQuestion());
+            Narriator.playSound(question.getQuestion());
             if (question instanceof MultipleChoice) {
                 System.out.println("Options: " + ((MultipleChoice) question).getUserOptions());
             }
