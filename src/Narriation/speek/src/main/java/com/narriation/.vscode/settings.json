@@ -1,6 +1,0 @@
-{
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "C:/Users/solom/OneDrive/Desktop/CSCE247GIT/src/LanguageLearning/LLAPPCODE/lib/json-simple-1.1.1.jar"
-    ]
-}

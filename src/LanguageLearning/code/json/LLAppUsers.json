@@ -1,0 +1,50 @@
+[
+    {
+        "password": "BrandM@ster2024!",
+        "preferredLanguage": "English",
+        "progressTrackers": [],
+        "userID": "test1",
+        "email": "emmamarkman@outlook.com",
+        "username": "MarketingEmma"
+    },
+    {
+        "password": "EdTech4Life!",
+        "preferredLanguage": "Spanish",
+        "progressTrackers": [],
+        "userID": "test2",
+        "email": "david.anderson@edtechguru.com",
+        "username": "TechEducatorDavid"
+    },
+    {
+        "password": "password",
+        "preferredLanguage": "English",
+        "progressTrackers": [],
+        "userID": "test3",
+        "email": "solomon@gmail.com",
+        "username": "solomontest"
+    },
+    {
+        "password": "password",
+        "preferredLanguage": "English",
+        "progressTrackers": [],
+        "userID": "test4",
+        "email": "test1@gmail.com",
+        "username": "test1"
+    },
+    {
+        "password": "password",
+        "preferredLanguage": "English",
+        "progressTrackers": [],
+        "userID": "test5",
+        "email": "jenny@gmail.com",
+        "username": "JennyJacobson"
+    },
+    {
+        "password": "password",
+        "preferredLanguage": "English",
+        "progressTrackers": [],
+        "userID": "test6",
+        "email": "jimsmith@outlook.com",
+        "username": "JimSmith"
+    }
+]
