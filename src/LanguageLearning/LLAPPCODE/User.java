@@ -99,4 +99,18 @@ public class User {
     public void setAchievementDates(ArrayList<Integer> achievementDates) {
         this.achievementDates = achievementDates;
     }
+
+    public void updateProgress(String language, int lessonId){
+        ProgressTracker trackerToUpdate;
+        for(ProgressTracker p : getProgressTrackers()){
+            if (p.getLanguage().equals(language)){
+                trackerToUpdate = p;
+            }
+        }
+        if (trackerToUpdate == null){
+            return;
+        }
+
+        trackerToUpdate.updateProgress(lessonId);
+    }
 }

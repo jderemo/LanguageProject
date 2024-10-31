@@ -2,12 +2,22 @@ import java.util.ArrayList;
 
 public class LessonList {
 
+    private static LessonList instance;
+
     // Variables
     private ArrayList<Lesson> lessons;
 
     // Constructor
-    public LessonList() {
-        this.lessons = new ArrayList<>();
+    private LessonList() {
+        this.lessons = DataLoader.getEveryLesson();
+    }
+
+    public static getInstance(){
+        if (instance == null){
+            instance = new LessonList()
+        }
+
+        return instance;
     }
 
     // Method to add a lesson
@@ -28,10 +38,5 @@ public class LessonList {
             }
         }
         return null; // Return null if lesson not found
-    }
-
-    // Method to get all lessons
-    public ArrayList<Lesson> getEveryLesson() {
-        return new ArrayList<>(lessons); // Return a copy of the lessons list
     }
 }
