@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Lesson {
     // Variables
-    private int lessonID;
+    private String lessonID;
     private String language;
     private Difficulty difficultyLevel; // Assuming Difficulty is an enum or class
     private String content;
@@ -11,7 +11,7 @@ public class Lesson {
     private List<Question> questions; // Use List<Question> for questions
 
     // Constructor
-    public Lesson(int lessonID, String language, Difficulty difficultyLevel, String content, String duration, List<Question> questions) {
+    public Lesson(String lessonID, String language, Difficulty difficultyLevel, String content, String duration, List<Question> questions) {
         this.lessonID = lessonID;
         this.language = language;
         this.difficultyLevel = difficultyLevel;
@@ -30,11 +30,11 @@ public class Lesson {
     }
     
     // Getters and Setters
-    public int getLessonID() {
+    public String getLessonID() {
         return lessonID;
     }
 
-    public void setLessonID(int lessonID) {
+    public void setLessonID(String lessonID) {
         this.lessonID = lessonID;
     }
 

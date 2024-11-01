@@ -5,7 +5,6 @@ public class MultipleChoice extends Question {
     private String questionText;
     private String exerciseID;
     private List<String> userOptions;
-    private List<String> wordBank;
     private String correctAnswer;
 
     public MultipleChoice(String questionText, String exerciseID, List<String> userOptions, String correctAnswer) {

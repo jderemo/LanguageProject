@@ -1,21 +1,26 @@
+import java.util.ArrayList;
+
 public class ProgressTracker {
-    private String exerciseID;   // Field to hold exercise ID
-    private double progress;     // Field to hold the progress value
-    private String userID;          // Field to hold user ID
-    private String language;     // Field to hold language
+    private String language;                        // Field to hold language
+    private ArrayList<String> completedLessons;     //Field to hold completed lessons
+    private double progress;                       // Field to hold user ID
 
     // Constructor with language parameter
-    public ProgressTracker(String exerciseID, double progress, String userID, String language) {
-        this.exerciseID = exerciseID;
+    public ProgressTracker(double progress, String language, ArrayList<String> completedLessons) {
         this.progress = progress;
-        this.userID = userID;
         this.language = language;
+        this.completedLessons = completedLessons;
     }
 
-    // Getter for exerciseID
-    public String getExerciseID() {
-        return exerciseID;
+    // To String method
+    public String toString(){
+        String lessons = "";
+        for(String s : completedLessons){
+            lessons+= s + ", ";
+        }
+        return "\nLanguage: " + language + ", Completed Lessons: " + lessons + "Progress: " + progress;
     }
+
 
     // Getter for progress
     public double getProgress() {
@@ -26,22 +31,20 @@ public class ProgressTracker {
         this.progress = progress;
     }
 
-    // Getter for userID
-    public String getUserID() {
-        return userID;
-    }
-
     // Getter for language
     public String getLanguage() {
         return language;
     }
 
-    // Method to update progress
-    public void updateProgress(double increment) {
-        this.progress += increment;  // Increment progress
+    public ArrayList<String> getCompletedLessons(){
+        return completedLessons;
     }
 
-    public void increaseProgress(double amount) {
-        this.progress += amount; // Assuming progress is a field in ProgressTracker
+    // Method to update progress
+    public void completeLesson(Lesson l) {
+        if (completedLessons.contains(l.getLessonID())){
+            System.out.println("User already has completed the lesson: " + l.getLessonID());
+            return;
+        }
     }
 }

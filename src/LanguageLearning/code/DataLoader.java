@@ -50,11 +50,16 @@ public class DataLoader {
 
         if (progressTrackerJSON != null) {
             for (Object obj : progressTrackerJSON) {
+                ArrayList<String> completedLessons = new ArrayList<String>();
+
                 JSONObject trackerJSON = (JSONObject) obj;
-                String exerciseID = (String) trackerJSON.get("exerciseID");
+                JSONArray completeLessonJSON = (JSONArray) trackerJSON.get("completedLessons");
+                for (Object s : completeLessonJSON){
+                    completedLessons.add((String) s);
+                }
                 double progress = ((Number) trackerJSON.get("progress")).doubleValue();
                 String language = (String) trackerJSON.get("language");
-                ProgressTracker tracker = new ProgressTracker(exerciseID, progress, userID, language); // Pass userID here
+                ProgressTracker tracker = new ProgressTracker(progress, language, completedLessons); // Pass userID here
                 progressTrackers.add(tracker);
             }
         }
@@ -73,7 +78,7 @@ public class DataLoader {
 
             for (Object obj : lessonsJSON) {
                 JSONObject lessonJSON = (JSONObject) obj;
-                int lessonID = ((Long) lessonJSON.get("lessonID")).intValue();
+                String lessonID = (String) lessonJSON.get("lessonID");
                 String language = (String) lessonJSON.get("language");
 
                 // Get the difficulty level and convert to enum

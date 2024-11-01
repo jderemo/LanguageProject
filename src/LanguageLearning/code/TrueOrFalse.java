@@ -7,7 +7,6 @@ public class TrueOrFalse extends Question {
     private String questionText;
     private String exerciseID;
     private List<String> userOptions;
-    private List<String> wordBank;
     private String correctAnswer;
 
     public TrueOrFalse(String questionText, String exerciseID, List<String> userOptions, String correctAnswer) {
@@ -16,7 +15,7 @@ public class TrueOrFalse extends Question {
         ArrayList<String> options = new ArrayList<String>();
         options.add("True");
         options.add("False");
-        this.userOptions = (List) options;
+        this.userOptions = options;
         this.correctAnswer = correctAnswer;
 
     }

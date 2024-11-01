@@ -3,61 +3,70 @@ import java.util.Scanner;
 public class LanguageLearningApp {
 
     // Variables
-    private LessonList lessonList;
-    private UserList userList;
+    private static Scanner scanner = new Scanner(System.in);
     private User user;
 
     // Main method
-    public static void main(String[] args){
+    public static void main(String[] args) {
         new LanguageLearningApp();
         return;
     }
 
     // Constructor
-    private LanguageLearningApp(){
-        this.lessonList = LessonList.getInstance();
-        this.userList = UserList.getInstance();
+    private LanguageLearningApp() {
         this.user = null; // Initially no user is logged in
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Welcome to our Language Learning App!\nWhat would you like to do? (register, login, quit)");
-        switch (scanner.nextLine()){
-            case "register":{
-                break;
-            }
-            case "login":{
-                login(scanner);
-                break;
-            }
-            case "quit":{
-                scanner.close();
-                return;
-            }
-        }
+        System.out.println("Welcome to our Language Learning App!");
+        idle();
         scanner.close();
     }
 
-    // Method to register a user
-    private User register(String username, String email, String password) {
-        // Registration logic to create and return a new User
-        return new User(username, email, password);
-    }
-
-    private void login(Scanner scanner){
-        User locatedUser = null;
-        while (locatedUser == null){
-            System.out.println("Enter your username");
-            String username = scanner.nextLine();
-            locatedUser = userList.locateUserByUsername(username);
-        }
-        String password = "";
-        while (!password.equals(locatedUser.getPassword())){
-            System.out.println("Enter your password");
-            password = scanner.nextLine();
-            if (!password.equals(locatedUser.getPassword())){
-                System.out.println("Incorrect! Try again.");
+    private void idle() {
+        boolean quit = false;
+        while (!quit) {
+            if (user == null){
+                System.out.println("What would you like to do? (register, login, quit)");
+                switch (scanner.nextLine().toLowerCase()) {
+                    case "register": {
+                        UserFactory.register(scanner);
+                        break;
+                    }
+                    case "login": {
+                        user = UserFactory.login(scanner);
+                        break;
+                    }
+                    case "quit": {
+                        quit = true;
+                        break;
+                    }
+                    default:{
+                        System.out.println("That was an invalid choice, try again.");
+                        break;
+                    }
+                }
+            } else {
+                System.out.println("What would you like to do? (lesson, quiz, logout)");
+                switch (scanner.nextLine().toLowerCase()) {
+                    case "lesson":{
+                        break;
+                    }
+                    case "quiz":{
+                        break;
+                    }
+                    case "logout":{
+                        UserFactory.logout(user);
+                        user = null;
+                        break;
+                    }
+                    default:{
+                        System.out.println("That was an invalid choice, try again.");
+                        break;
+                    }
+                }
             }
         }
-        System.out.println("Logged in!");
     }
+
+
+    
 }

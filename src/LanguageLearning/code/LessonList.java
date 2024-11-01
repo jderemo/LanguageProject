@@ -24,12 +24,12 @@ public class LessonList {
     }
 
     // Method to remove a lesson by ID
-    public void removeLesson(int lessonID) {
+    public void removeLesson(String lessonID) {
         lessons.removeIf(lesson -> lesson.getLessonID() == lessonID);
     }
 
     // Method to get a lesson by ID
-    public Lesson getLesson(int lessonID) {
+    public Lesson getLesson(String lessonID) {
         for (Lesson lesson : lessons) {
             if (lesson.getLessonID() == lessonID) {
                 return lesson;
@@ -39,7 +39,17 @@ public class LessonList {
     }
 
     // Method to get all lessons
-    public ArrayList<Lesson> getEveryLesson() {
-        return new ArrayList<>(lessons); // Return a copy of the lessons list
+    public ArrayList<Lesson> getLessons(){
+        return lessons;
+    }
+
+    public ArrayList<Lesson> getLessonsByLanguage(String language){
+        ArrayList<Lesson> sortedLessons = new ArrayList<Lesson>();
+        for(Lesson l : lessons){
+            if (l.getLanguage().equals(language)){
+                sortedLessons.add(l);
+            }
+        }
+        return sortedLessons;
     }
 }

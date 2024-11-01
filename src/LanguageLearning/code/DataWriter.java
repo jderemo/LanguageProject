@@ -6,12 +6,13 @@ import org.json.simple.JSONObject;
 
 public class DataWriter {
 
-    private static final String USERS_FILE = "C:\\Users\\solom\\OneDrive\\Desktop\\CSCE247GIT\\src\\Narriation\\speek\\src\\LLAPPJSON\\json\\LLAppUsers.json"; 
-    private static final String LESSONS_FILE = "C:\\Users\\solom\\OneDrive\\Desktop\\CSCE247GIT\\src\\Narriation\\speek\\src\\LLAPPJSON\\json\\LLAppLessons.json";
+    private static final String USERS_FILE = "./json/LLAppUsers.json"; 
+    private static final String LESSONS_FILE = "./json/LLAppLessons.json";
 
     // Write users to file
     @SuppressWarnings("unchecked")
-    public static void saveUsers(ArrayList<User> users) {
+    public static void saveUsers() {
+        ArrayList<User> users = UserList.getInstance().getUsers();
         JSONArray usersJSON = new JSONArray();
 
         for (User user : users) {
@@ -26,7 +27,12 @@ public class DataWriter {
             JSONArray progressTrackersJSON = new JSONArray();
             for (ProgressTracker tracker : user.getProgressTrackers()) {
                 JSONObject trackerJSON = new JSONObject();
-                trackerJSON.put("exerciseID", tracker.getExerciseID()); 
+                JSONArray trackerCompleteLessonJSON = new JSONArray();
+                for (String lesson : tracker.getCompletedLessons()){
+                    trackerCompleteLessonJSON.add(lesson);
+                }
+                trackerJSON.put("language", tracker.getLanguage());
+                trackerJSON.put("completedLessons", trackerCompleteLessonJSON);
                 trackerJSON.put("progress", tracker.getProgress()); 
                 progressTrackersJSON.add(trackerJSON);
             }
@@ -40,7 +46,8 @@ public class DataWriter {
 
     // Write lessons to file
     @SuppressWarnings("unchecked")
-    public static void saveLessons(ArrayList<Lesson> lessons) {
+    public static void saveLessons() {
+        ArrayList<Lesson> lessons = LessonList.getInstance().getLessons();
         JSONArray lessonsJSON = new JSONArray();
 
         for (Lesson lesson : lessons) {
@@ -87,31 +94,8 @@ public class DataWriter {
         }
     }
 
-    // Method to update progress for a user in the JSON file
-    public static void updateProgress(ProgressTracker tracker) {
-        ArrayList<User> users = DataLoader.loadUsers(); // Load existing users
-        for (User user : users) {
-            if (user.getUserID() == tracker.getUserID()) { 
-                ProgressTracker existingTracker = user.getProgressTrackerByExerciseID(tracker.getExerciseID());
-                if (existingTracker != null) {
-                    existingTracker.setProgress(tracker.getProgress()); // Update the existing tracker
-                } else {
-                    user.addProgressTracker(tracker); // Add as a new tracker
-                }
-                break;
-            }
-        }
-        saveUsers(users); // Save updated user list back to the JSON
-    }
-
-    public static void saveProgress(User user) {
-        ArrayList<User> users = DataLoader.loadUsers(); // Load existing users
-        for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getUserID() == user.getUserID()) {
-                users.set(i, user); // Update the user in the list
-                break;
-            }
-        }
-        saveUsers(users); // Save the updated user list back to the JSON file
+    public static void updateUser(User user) {
+        UserList.getInstance().updateUserById(user.getUserID(), user);
+        saveUsers(); // Save the updated user list back to the JSON file
     }
 }

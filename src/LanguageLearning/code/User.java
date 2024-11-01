@@ -10,6 +10,7 @@ public class User {
     private ArrayList<ProgressTracker> progressTrackers;
     private String preferredLanguage;
 
+    // Constructor for loading existing user from JSON
     public User(String userID, String username, String email, String password, String preferredLanguage, ArrayList<ProgressTracker> progressTrackers) {
         this.userID = userID;
         this.username = username;
@@ -18,6 +19,8 @@ public class User {
         this.preferredLanguage = preferredLanguage;
         this.progressTrackers = progressTrackers != null ? progressTrackers : new ArrayList<>();
     }
+
+    // Constructor for a new user
     public User(String username, String email, String password){
         this.userID = UUID.randomUUID().toString();
         this.username = username;
@@ -27,59 +30,13 @@ public class User {
         this.progressTrackers = new ArrayList<ProgressTracker>();
     }
 
-    // Registers a new user if the username and email are unique
-    public void register() {
-        ArrayList<User> users = DataLoader.loadUsers();
-
-        for (User user : users) {
-            if (user.getUsername().equals(this.username)) {
-                System.out.println("Username already exists. Please choose a different username.");
-                return;
-            }
-            if (user.getEmail().equals(this.email)) {
-                System.out.println("Email already registered. Please use a different email.");
-                return;
-            }
+    // To String method
+    public String toString(){
+        String trackers = "";
+        for(ProgressTracker p : progressTrackers){
+            trackers+= p;
         }
-
-        users.add(this); // Add this user to the list
-        DataWriter.saveUsers(users); // Save the updated list to JSON
-        System.out.println("Registration successful!");
-    }
-
-    // Validates login credentials
-    public void login(String username, String email, String password) {
-        ArrayList<User> users = DataLoader.loadUsers();
-
-        for (User user : users) {
-            if (user.getUsername().equals(username) && user.getEmail().equals(email) && user.getPassword().equals(password)) {
-                System.out.println("Login successful!");
-                return;
-            }
-        }
-        System.out.println("Login failed. Please check your credentials.");
-    }
-
-    // Retrieves a ProgressTracker by exercise ID
-    public ProgressTracker getProgressTrackerByExerciseID(String exerciseID) {
-        for (ProgressTracker tracker : progressTrackers) {
-            if (tracker.getExerciseID().equals(exerciseID)) {
-                return tracker;
-            }
-        }
-        return null;
-    }
-
-    // Updates the progress for a specific exercise
-    public void updateProgress(ProgressTracker tracker) {
-        ProgressTracker existingTracker = getProgressTrackerByExerciseID(tracker.getExerciseID());
-        if (existingTracker != null) {
-            existingTracker.setProgress(existingTracker.getProgress() + 1.0);
-            System.out.println("Progress updated for exercise: " + tracker.getExerciseID());
-        } else {
-            addProgressTracker(tracker);
-            System.out.println("Added and updated progress for new exercise: " + tracker.getExerciseID());
-        }
+        return "Username: " + username + "\nPassword: " + password + "\nEmail: " + email + "\nProgress Tracker(s): " + trackers + "\nPreferred Language: " + preferredLanguage;
     }
 
     // Getters and Setters

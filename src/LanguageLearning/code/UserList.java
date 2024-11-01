@@ -18,14 +18,8 @@ public class UserList {
         return instance;
     }
 
-    // Method to get a user by username
-    public User getUser(String username) {
-        for (User user : users) {
-            if (user.getUsername().equals(username)) {
-                return user;
-            }
-        }
-        return null; // Return null if user not found
+    public ArrayList<User> getUsers(){
+        return users;
     }
 
     // Method to add a user
@@ -49,8 +43,19 @@ public class UserList {
         return null;
     }
 
-    User authenticate(String username, String password) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void updateUserById(String userId, User user){
+        for(User u : users){
+            if (u.getUserID().equals(userId)){
+                u = user;
+                return;
+            }
+        }
+        System.out.println("Couldn't find user with ID: " + userId);
+    }
+
+    public void saveUsers(){
+        DataWriter.saveUsers();
+        return;
     }
 }
 
