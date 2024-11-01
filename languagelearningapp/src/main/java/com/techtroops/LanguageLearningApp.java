@@ -19,11 +19,11 @@ public class LanguageLearningApp {
         user = null; // Initially no user is logged in
 
         System.out.println("Welcome to our Language Learning App!");
-        idle();
+        runProgram();
         scanner.close();
     }
 
-    private void idle() {
+    private void runProgram() {
         boolean quit = false;
         while (!quit) {
             if (user == null){
