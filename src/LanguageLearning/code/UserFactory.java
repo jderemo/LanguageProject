@@ -4,6 +4,7 @@ import java.util.Scanner;
 // for the logging in, logging out, and registering of accounts.
 // Will probably need to be reworked for when a GUI is created
 public class UserFactory {
+    private static UserList userList = UserList.getInstance();
 
     public static void register(Scanner scanner) {
         // Gather information
@@ -37,8 +38,8 @@ public class UserFactory {
 
         // Create user
         User newUser = new User(username, email, password);
-        UserList.getInstance().addUser(newUser);
-        UserList.getInstance().saveUsers();
+        userList.addUser(newUser);
+        userList.saveUsers();
         System.out.println("Account created successfully!\nYou may now log in using the credentials you specified!");
         return;
     }
@@ -48,7 +49,7 @@ public class UserFactory {
         while (locatedUser == null) {
             System.out.println("Enter your username");
             String username = scanner.nextLine();
-            locatedUser = UserList.getInstance().locateUserByUsername(username);
+            locatedUser = userList.locateUserByUsername(username);
         }
         String password = "";
         while (!password.equals(locatedUser.getPassword())) {
@@ -63,9 +64,9 @@ public class UserFactory {
     }
 
     public static void logout(User user){
-        UserList.getInstance().updateUserById(user.getUserID(), user);
+        userList.updateUserById(user.getUserID(), user);
         System.out.println("Goodbye for now " + user.getUsername() + "!\nHope to see you again soon!");
-        UserList.getInstance().saveUsers();
+        userList.saveUsers();
         user = null;
         return;
     }
