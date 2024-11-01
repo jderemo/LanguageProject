@@ -1,0 +1,24 @@
+[
+    {
+        "lessonID": "Spanish1",
+        "language": "Spanish",
+        "difficultyLevel": "Basic",
+        "content": "Welcome to your first Spanish lesson! Let’s start with some essential greetings and polite expressions you’ll use every day. Spanish is a beautifully expressive language, and knowing a few basic words will help you make a great first impression.\n\n1. **Greetings and Farewells**\n- 'Hola' - Hello: This is the most common greeting in Spanish, simple and friendly.\n- 'Buenos días' - Good morning: Used until around noon.\n- 'Buenas tardes' - Good afternoon: Generally used from noon until sundown.\n- 'Buenas noches' - Good evening or Good night: Use this in the evening or when saying goodbye at night.\n- 'Adiós' - Goodbye: A common way to say goodbye, but if you plan to see the person again soon, try 'hasta luego' (see you later) instead.\n\n2. **Polite Phrases**\n- 'Por favor' - Please: A polite way to make requests, showing respect and kindness.\n- 'Gracias' - Thank you: Use this to show appreciation. Try 'muchas gracias' (thank you very much) for extra emphasis.\n- 'De nada' - You’re welcome: A polite response to 'gracias', letting the other person know that you’re happy to help.\n- 'Perdón' - Excuse me / Sorry: Use 'perdón' to apologize or 'disculpe' to get someone’s attention politely.\n\n3. **Cultural Tip**\nIn many Spanish-speaking countries, greetings are warm and expressive. A handshake or even a light cheek kiss is common between friends or close acquaintances. Practice these phrases, and remember that a friendly smile goes a long way!",
+        "duration": "Short",
+        "feedbackList": [
+            "This is easy!",
+            "Too easy!"
+        ]
+    },
+    {
+        "lessonID": "Spanish2",
+        "language": "Spanish",
+        "difficultyLevel": "Basic",
+        "content": "Spanish nouns and adjectives are a fundamental part of the language, and understanding their structure will help you form sentences accurately.\n\n1. **Nouns and Gender**\nSpanish nouns have a gender, either masculine or feminine:\n- Masculine nouns usually end in '-o', e.g., 'el libro' (the book).\n- Feminine nouns typically end in '-a', e.g., 'la mesa' (the table).\n*Exceptions*: Not all nouns follow this rule. For example, 'el día' (the day) is masculine, and 'la mano' (the hand) is feminine. These exceptions add a bit of spice to your learning!\n\n2. **Plural Forms**\nNouns change to reflect whether they are singular or plural:\n- To make a noun plural, add '-s' if it ends in a vowel (e.g., 'el libro' becomes 'los libros').\n- If the noun ends in a consonant, add '-es' (e.g., 'la flor' becomes 'las flores').\n\n3. **Adjectives and Agreement**\nAdjectives describe nouns and must match the noun’s gender and number.\n- For masculine nouns: 'libro interesante' (interesting book).\n- For feminine nouns: 'mesa interesante' (interesting table).\n- Plural: 'libros interesantes' (interesting books) and 'mesas interesantes' (interesting tables).\n\n4. **Cultural Tip**\nSpanish speakers often omit articles like 'the' when talking casually, but they add a lot of detail through adjectives. Try adding adjectives in your own phrases to make them more descriptive and meaningful!",
+        "duration": "Medium",
+        "feedbackList": [
+            "Pretty helpful lesson!",
+            "Great difficulty increase!"
+        ]
+    }
+]

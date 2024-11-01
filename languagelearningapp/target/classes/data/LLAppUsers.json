@@ -1,0 +1,35 @@
+[
+    {
+        "password": "BrandM@ster2024!",
+        "preferredLanguage": "English",
+        "progressTrackers": [
+            {
+                "completedLessons": [
+                    "Spanish1"
+                ],
+                "progress": 0.33,
+                "language": "Spanish"
+            }
+        ],
+        "userID": "test1",
+        "email": "emmamarkman@outlook.com",
+        "username": "MarketingEmma"
+    },
+    {
+        "password": "EdTech4Life!",
+        "preferredLanguage": "Spanish",
+        "progressTrackers": [
+            {
+                "completedLessons": [
+                    "Spanish1",
+                    "Spanish2"
+                ],
+                "progress": 1.0,
+                "language": "Spanish"
+            }
+        ],
+        "userID": "test2",
+        "email": "david.anderson@edtechguru.com",
+        "username": "TechEducatorDavid"
+    }
+]
