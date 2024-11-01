@@ -20,16 +20,5 @@
             "Pretty helpful lesson!",
             "Great difficulty increase!"
         ]
-    },
-    {
-        "lessonID": "Spanish11",
-        "language": "Spanish",
-        "difficultyLevel": "Advanced",
-        "content": "In this lesson, we’ll tackle the subjunctive mood and the conditional tense, which bring subtlety and complexity to your Spanish.\n\n1. **The Subjunctive Mood**\nThe subjunctive is used to express wishes, doubts, emotions, and hypothetical situations. Common triggers for the subjunctive are words like 'espero que' (I hope that), 'dudo que' (I doubt that), and 'ojalá que' (I wish that).\n- **Example 1:** 'Espero que vengas' - 'I hope that you come.' ('venir' changes to 'vengas' in the subjunctive).\n- **Example 2:** 'Dudo que él tenga razón' - 'I doubt that he is right.' ('tener' changes to 'tenga' in the subjunctive).\n*Forming the Subjunctive*: For most verbs, start with the 'yo' form of the present indicative, drop the '-o', and add the subjunctive endings.\n\n2. **The Conditional Tense**\nThe conditional allows you to express 'what would happen' under specific conditions. Use phrases like 'si tuviera' (if I had) to set up a conditional sentence.\n- **Example:** 'Si tuviera dinero, viajaría' - 'If I had money, I would travel.' This combines 'tuviera' (past subjunctive form of 'tener') and 'viajaría' (conditional form of 'viajar').\n*Forming the Conditional*: Take the infinitive form of the verb and add the conditional endings.\n\n3. **Cultural Tip**\nThe subjunctive mood is one of the most unique aspects of Spanish and is used daily to express nuances in feelings, hopes, and hypothetical ideas. Mastering it will bring a natural fluency to your Spanish, as native speakers often use it in everyday conversation!",
-        "duration": "Long",
-        "feedbackList": [
-            "The difficulty spike might be a bit much, no?",
-            "Wow, this is difficult!"
-        ]
     }
 ]

@@ -48,5 +48,7 @@ public class ProgressTracker {
             System.out.println("User already has completed the lesson: " + l.getLessonID());
             return;
         }
+        completedLessons.add(l.getLessonID());
+        progress = (double) completedLessons.size() / (double) LessonList.getInstance().getLessons().size();
     }
 }

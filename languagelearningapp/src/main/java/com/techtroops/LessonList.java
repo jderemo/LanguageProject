@@ -33,7 +33,7 @@ public class LessonList {
     // Method to get a lesson by ID
     public Lesson getLesson(String lessonID) {
         for (Lesson lesson : lessons) {
-            if (lesson.getLessonID() == lessonID) {
+            if (lesson.getLessonID().equals(lessonID)) {
                 return lesson;
             }
         }

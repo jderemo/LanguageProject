@@ -1,7 +1,6 @@
 package com.techtroops;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -15,8 +14,8 @@ import org.json.simple.parser.JSONParser;
 public class DataLoader {
 
     private static final String USERS_FILE = "/data/LLAppUsers.json"; // Adjust the path as necessary
-    private static final String LESSONS_FILE = "/data/LLAppUsers.json";
-    private static final String QUIZZES_FILE = "/data/LLAppUsers.json";
+    private static final String LESSONS_FILE = "/data/LLAppLessons.json";
+    private static final String QUIZZES_FILE = "/data/LLAppQuiz.json";
 
     public static ArrayList<User> loadUsers() {
         ArrayList<User> users = new ArrayList<>();

@@ -94,6 +94,7 @@ public class DataWriter {
             FileWriter file = new FileWriter(path);
             file.write(data.toJSONString());
             file.flush();
+            file.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -97,4 +97,15 @@ public class User {
         progressTrackers.add(tracker);
     }
 
+    public ProgressTracker getProgressTrackerByLanguage(String language){
+        for (ProgressTracker pT : progressTrackers){
+            if (pT.getLanguage().equals(language)){
+                return pT;
+            }
+        }
+        ProgressTracker newPT = new ProgressTracker(0, language, new ArrayList<String>());
+        progressTrackers.add(newPT);
+        return newPT;
+    }
+
 }

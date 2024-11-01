@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class LanguageLearningApp {
 
     // Variables
-    private static Scanner scanner = new Scanner(System.in);
-    private User user;
+    public static Scanner scanner = new Scanner(System.in);
+    private static User user;
 
     // Main method
     public static void main(String[] args) {
@@ -16,7 +16,7 @@ public class LanguageLearningApp {
 
     // Constructor
     private LanguageLearningApp() {
-        this.user = null; // Initially no user is logged in
+        user = null; // Initially no user is logged in
 
         System.out.println("Welcome to our Language Learning App!");
         idle();
@@ -30,11 +30,11 @@ public class LanguageLearningApp {
                 System.out.println("What would you like to do? (register, login, quit)");
                 switch (scanner.nextLine().toLowerCase()) {
                     case "register": {
-                        UserFactory.register(scanner);
+                        UserFactory.register();
                         break;
                     }
                     case "login": {
-                        user = UserFactory.login(scanner);
+                        user = UserFactory.login();
                         break;
                     }
                     case "quit": {
@@ -50,9 +50,11 @@ public class LanguageLearningApp {
                 System.out.println("What would you like to do? (lesson, quiz, logout)");
                 switch (scanner.nextLine().toLowerCase()) {
                     case "lesson":{
+                        LessonFactory.findLesson();
                         break;
                     }
                     case "quiz":{
+                        QuizFactory.listAvailableQuizzes();
                         break;
                     }
                     case "logout":{
@@ -67,6 +69,9 @@ public class LanguageLearningApp {
                 }
             }
         }
+    }
+    public static User getCurrentUser(){
+        return user;
     }
 
 

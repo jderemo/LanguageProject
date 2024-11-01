@@ -7,8 +7,9 @@ import java.util.Scanner;
 // Will probably need to be reworked for when a GUI is created
 public class UserFactory {
     private static UserList userList = UserList.getInstance();
+    private static Scanner scanner = LanguageLearningApp.scanner;
 
-    public static void register(Scanner scanner) {
+    public static void register() {
         // Gather information
         // Email
         String email = "";
@@ -46,7 +47,7 @@ public class UserFactory {
         return;
     }
 
-    public static User login(Scanner scanner) {
+    public static User login() {
         User locatedUser = null;
         while (locatedUser == null) {
             System.out.println("Enter your username");

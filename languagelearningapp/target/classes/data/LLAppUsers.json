@@ -1,1 +1,35 @@
-[{"password":"BrandM@ster2024!","preferredLanguage":"English","progressTrackers":[{"completedLessons":["Spanish1"],"progress":0.33,"language":"Spanish"}],"userID":"test1","email":"emmamarkman@outlook.com","username":"MarketingEmma"},{"password":"EdTech4Life!","preferredLanguage":"Spanish","progressTrackers":[{"completedLessons":["Spanish1","Spanish2","Spanish11"],"progress":1.0,"language":"Spanish"}],"userID":"test2","email":"david.anderson@edtechguru.com","username":"TechEducatorDavid"},{"password":"test","preferredLanguage":"Spanish","progressTrackers":[],"userID":"891048f4-de4c-4000-b07f-beaad63db2d0","email":"test","username":"test"}]
+[
+    {
+        "password": "BrandM@ster2024!",
+        "preferredLanguage": "English",
+        "progressTrackers": [
+            {
+                "completedLessons": [
+                    "Spanish1"
+                ],
+                "progress": 0.33,
+                "language": "Spanish"
+            }
+        ],
+        "userID": "test1",
+        "email": "emmamarkman@outlook.com",
+        "username": "MarketingEmma"
+    },
+    {
+        "password": "EdTech4Life!",
+        "preferredLanguage": "Spanish",
+        "progressTrackers": [
+            {
+                "completedLessons": [
+                    "Spanish1",
+                    "Spanish2"
+                ],
+                "progress": 1.0,
+                "language": "Spanish"
+            }
+        ],
+        "userID": "test2",
+        "email": "david.anderson@edtechguru.com",
+        "username": "TechEducatorDavid"
+    }
+]
