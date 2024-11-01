@@ -52,7 +52,7 @@ public class LessonFactory {
         currentLesson = lessonList.getLesson(lessonId);
 
         System.out.println("Starting Lesson: " + lessonId + "\nFollow along as I read the contents to you...\n" + currentLesson.getContent());
-        //Narriator.playSound(lesson.getContent());
+        Narriator.playSound(lesson.getContent());
         System.out.println("Ready to take the quiz? (y, n)");
         boolean userAnswered = false;
         while (!userAnswered){
