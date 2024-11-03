@@ -86,6 +86,9 @@ public class LanguageLearningApp {
     public static User getCurrentUser(){
         return user;
     }
+    public static void setCurrentUser(User newUser){
+        user = newUser;
+    }
 
 
     

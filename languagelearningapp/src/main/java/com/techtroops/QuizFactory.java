@@ -37,7 +37,7 @@ public class QuizFactory {
      * @param quizId Quiz id
      * @return A Quiz from quizList with the specified id
      */
-    public static Quiz getQuizById(String quizId){
+    public Quiz getQuizById(String quizId){
         for (Quiz q : quizList){
             if (q.getQuizID().equals(quizId)){
                 return q;
@@ -52,7 +52,7 @@ public class QuizFactory {
      * @param language Language the quizzes should be for
      * @return An ArrayList<Quiz> containing said quizzes
      */
-    public static ArrayList<Quiz> getAvailableQuizzes(User user, String language){
+    public ArrayList<Quiz> getAvailableQuizzes(User user, String language){
         ProgressTracker userProgressTracker = user.getProgressTrackerByLanguage(language);
 
         if (userProgressTracker == null){
@@ -167,6 +167,10 @@ public class QuizFactory {
      */
     public int getNumberOfCorrectAnswers(){
         return currentScore;
+    }
+
+    public Quiz getCurrentQuiz(){
+        return currentQuiz;
     }
 
     /**

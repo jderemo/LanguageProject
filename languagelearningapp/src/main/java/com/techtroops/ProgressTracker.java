@@ -47,14 +47,15 @@ public class ProgressTracker {
 
     /**
      * Adds a lesson to the progress tracker's completed lessons and gets the user's overall progress across the language.
-     * @param l Lesson to complete
+     * @param lesson Lesson to complete
      */
-    public void completeLesson(Lesson l) {
-        if (completedLessons.contains(l.getLessonID())){
-            System.out.println("User already has completed the lesson: " + l.getLessonID());
+    public void completeLesson(Lesson lesson) {
+        if (completedLessons.contains(lesson.getLessonID())){
+            System.out.println("User already has completed the lesson: " + lesson.getLessonID());
             return;
         }
-        completedLessons.add(l.getLessonID());
-        progress = (double) completedLessons.size() / (double) LessonFactory.getInstance().GetLessonsOfLanguage(l.getLanguage()).size();
+        completedLessons.add(lesson.getLessonID());
+        System.out.println(LessonFactory.getInstance().GetLessonsOfLanguage(lesson.getLanguage()).size());
+        progress = (double) completedLessons.size() / (double) LessonList.getInstance().getLessons().size();
     }
 }

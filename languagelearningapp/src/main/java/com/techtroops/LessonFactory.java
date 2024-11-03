@@ -28,6 +28,38 @@ public class LessonFactory {
     }
 
     /**
+     * Gets a lesson from the lesson list.
+     * @param language Language of the lesson 
+     * @param lessonId ID of the lesson
+     * @return The resulting lesson after searching for it. If no lesson was found, returns null.
+     */
+    public Lesson getLesson(String language, String lessonId){
+        ArrayList<Lesson> lessons = GetLessonsOfLanguage(language);
+
+        if (lessons.size() == 0){
+            return null;
+        }
+
+        for(Lesson l : lessons){
+            if (l.getLessonID().equals(lessonId)){
+                return l;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * A method that reads the language's contents aloud
+     * @param lesson Lesson to read
+     */
+    public void readLesson(Lesson lesson){
+        if (lesson == null){
+            return;
+        }
+        Narriator.playSound(lesson.getContent());
+    }
+
+    /**
      * Console implementation of finding a lesson in the lesson list.
      * After a lesson is found, it will call a method to begin the lesson 
      */
@@ -62,38 +94,6 @@ public class LessonFactory {
         // Begin Lesson
         beginLessonConsoleUi(lessonToTake);
     }
-
-    /**
-     * Gets a lesson from the lesson list.
-     * @param language Language of the lesson 
-     * @param lessonId ID of the lesson
-     * @return The resulting lesson after searching for it. If no lesson was found, returns null.
-     */
-    public Lesson getLesson(String language, String lessonId){
-        ArrayList<Lesson> lessons = GetLessonsOfLanguage(language);
-
-        if (lessons.size() == 0){
-            return null;
-        }
-
-        for(Lesson l : lessons){
-            if (l.getLessonID().equals(lessonId)){
-                return l;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * A method that reads the language's contents aloud
-     * @param lesson Lesson to read
-     */
-    public void readLesson(Lesson lesson){
-        if (lesson == null){
-            return;
-        }
-        Narriator.playSound(lesson.getContent());
-    }
     
     /**
      * Console implementation of beginning a lesson. After the lesson is read
@@ -115,7 +115,7 @@ public class LessonFactory {
         while (true){
             switch(scanner.nextLine().toLowerCase()){
                 case "y":{
-                    QuizFactory.getInstance().launchQuizConsoleUi(QuizFactory.getQuizById(currentLesson.getQuizID()));
+                    QuizFactory.getInstance().launchQuizConsoleUi(QuizFactory.getInstance().getQuizById(currentLesson.getQuizID()));
                     return;
                 }
                 case "n":{
