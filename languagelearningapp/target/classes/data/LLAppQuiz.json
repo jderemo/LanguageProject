@@ -1,9 +1,11 @@
 [
     {
         "quizID": "Spanish1",
+        "language": "Spanish",
+        "lessonID": "Spanish1",
         "questionsList": [
             {
-                "exerciseID": "SPMultipleChoice1",
+                "questionID": "SPMultipleChoice1",
                 "question": "What is the correct conjugation for 'comer' (to eat) in first-person present tense?",
                 "userOptions": [
                     "como",
@@ -20,7 +22,7 @@
                 "correctAnswer": "como"
             },
             {
-                "exerciseID": "SPMultipleChoice2",
+                "questionID": "SPMultipleChoice2",
                 "question": "Which of the following is the correct plural form of 'el libro' (the book)?",
                 "userOptions": [
                     "los libros",
@@ -36,12 +38,12 @@
                 "correctAnswer": "los libros"
             },
             {
-                "exerciseID": "SPTrueFalse1",
+                "questionID": "SPTrueFalse1",
                 "question": "Spanish is the most widely spoken language in the world.",
                 "correctAnswer": "True"
             },
             {
-                "exerciseID": "SPMultipleChoice3",
+                "questionID": "SPMultipleChoice3",
                 "question": "What does 'gracias' mean in English?",
                 "userOptions": [
                     "Hello",
@@ -57,7 +59,7 @@
                 "correctAnswer": "Thank you"
             },
             {
-                "exerciseID": "SPTrueFalse2",
+                "questionID": "SPTrueFalse2",
                 "question": "The word 'perro' means cat in Spanish.",
                 "correctAnswer": "False"
             }
@@ -65,9 +67,11 @@
     },
     {
         "quizID": "Spanish2",
+        "language": "Spanish",
+        "lessonID": "Spanish2",
         "questionsList": [
             {
-                "exerciseID": "SPMultipleChoice4",
+                "questionID": "SPMultipleChoice4",
                 "question": "What is the correct translation for 'I am hungry'?",
                 "userOptions": [
                     "Yo estoy hambre",
@@ -83,7 +87,7 @@
                 "correctAnswer": "Yo tengo hambre"
             },
             {
-                "exerciseID": "SPMultipleChoice5",
+                "questionID": "SPMultipleChoice5",
                 "question": "What is the capital of Spain?",
                 "userOptions": [
                     "Barcelona",
@@ -98,12 +102,12 @@
                 "correctAnswer": "Madrid"
             },
             {
-                "exerciseID": "SPTrueFalse3",
+                "questionID": "SPTrueFalse3",
                 "question": "The word 'mesa' means table in Spanish.",
                 "correctAnswer": "True"
             },
             {
-                "exerciseID": "SPMultipleChoice6",
+                "questionID": "SPMultipleChoice6",
                 "question": "How do you say 'goodbye' in Spanish?",
                 "userOptions": [
                     "Hola",
@@ -119,7 +123,7 @@
                 "correctAnswer": "Adiós"
             },
             {
-                "exerciseID": "SPTrueFalse4",
+                "questionID": "SPTrueFalse4",
                 "question": "The word 'verde' means red in Spanish.",
                 "correctAnswer": "False"
             }

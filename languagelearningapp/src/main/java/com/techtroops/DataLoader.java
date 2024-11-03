@@ -74,6 +74,10 @@ public class DataLoader {
     }
 
 
+    /**
+     * Loads all lessons found in the lessons JSON file
+     * @return an ArrayList of all lessons found in the lessons JSON file
+     */
     public static ArrayList<Lesson> loadLessons() {
         ArrayList<Lesson> lessons = new ArrayList<>();
 
@@ -94,35 +98,10 @@ public class DataLoader {
 
                 String content = (String) lessonJSON.get("content");
                 String duration = (String) lessonJSON.get("duration");
-
-                // Check if questionsList is present and not null
-                JSONArray questionsListJSON = (JSONArray) lessonJSON.get("questionsList");
-                List<Question> questions = new ArrayList<>();
-
-                if (questionsListJSON != null) {  // Null check
-                    for (Object questionObj : questionsListJSON) {
-                        JSONObject questionJSON = (JSONObject) questionObj;
-                        String questionText = (String) questionJSON.get("question");
-                        String exerciseID = (String) questionJSON.get("exerciseID");
-                        String correctAnswer = (String) questionJSON.get("correctAnswer");
-                        JSONArray userOptionsJSON = (JSONArray) questionJSON.get("userOptions");
-
-                        List<String> userOptions = new ArrayList<>();
-                        for (Object option : userOptionsJSON) {
-                            userOptions.add((String) option);
-                        }
-
-                        // Check type to instantiate the correct Question subclass
-                        if (exerciseID.contains("MultipleChoice")) {
-                            questions.add(new MultipleChoice(questionText, exerciseID, userOptions, correctAnswer));
-                        } else if (exerciseID.contains("FillInTheBlank")) {
-                            questions.add(new FillInTheBlank(questionText, exerciseID, userOptions, correctAnswer));
-                        }
-                    }
-                }
+                String quizID = (String) lessonJSON.get("quizID");
 
                 // Create and add the Lesson
-                Lesson lesson = new Lesson(lessonID, language, difficultyLevel, content, duration, questions);
+                Lesson lesson = new Lesson(lessonID, language, difficultyLevel, content, duration, quizID);
                 lessons.add(lesson);
             }
         } catch (Exception e) {
@@ -132,6 +111,10 @@ public class DataLoader {
         return lessons;
     }
 
+    /**
+     * Loads all quizzes in the Quizzes JSON file
+     * @return An ArrayList of all questions found in the JSON file
+     */
     public static ArrayList<Quiz> loadQuizzes() {
         ArrayList<Quiz> quizzes = new ArrayList<>();
 
@@ -144,13 +127,15 @@ public class DataLoader {
             for (Object obj : quizzesJSON) {
                 JSONObject quizJSON = (JSONObject) obj;
                 String quizID = (String) quizJSON.get("quizID");
+                String language = (String) quizJSON.get("language");
+                String lessonID = (String) quizJSON.get("lessonID");
                 JSONArray questionsListJSON = (JSONArray) quizJSON.get("questionsList");
 
                 List<Question> questionsList = new ArrayList<>();
 
                 for (Object questionObj : questionsListJSON) {
                     JSONObject questionJSON = (JSONObject) questionObj;
-                    String exerciseID = (String) questionJSON.get("exerciseID");
+                    String questionID = (String) questionJSON.get("questionID");
                     String questionText = (String) questionJSON.get("question");
 
                     // Parse userOptions
@@ -168,21 +153,21 @@ public class DataLoader {
                     // Determine question type and instantiate
                     if (userOptions != null && !userOptions.isEmpty()) {
                         // It's a multiple choice question
-                        MultipleChoice mcQuestion = new MultipleChoice(questionText, exerciseID, userOptions, correctAnswer);
+                        MultipleChoice mcQuestion = new MultipleChoice(questionText, questionID, userOptions, correctAnswer);
                         questionsList.add(mcQuestion);
-                    } else if (exerciseID.contains("FillInTheBlank")) {
+                    } else if (questionID.contains("FillInTheBlank")) {
                         // It's a fill-in-the-blank question
-                        FillInTheBlank fillInTheBlankQuestion = new FillInTheBlank(questionText, exerciseID, userOptions, correctAnswer);
+                        FillInTheBlank fillInTheBlankQuestion = new FillInTheBlank(questionText, questionID, userOptions, correctAnswer);
                         questionsList.add(fillInTheBlankQuestion);
                     } else {
                         // It's a true/false question; no user options expected
-                        TrueOrFalse tfQuestion = new TrueOrFalse(questionText, exerciseID, userOptions, correctAnswer);
+                        TrueOrFalse tfQuestion = new TrueOrFalse(questionText, questionID, userOptions, correctAnswer);
                         questionsList.add(tfQuestion);
                     }
                 }
 
                 // Create a Quiz object and add it to the list
-                Quiz quiz = new Quiz(quizID, questionsList);
+                Quiz quiz = new Quiz(quizID, language, lessonID, questionsList);
                 quizzes.add(quiz);
             }
         } catch (Exception e) {

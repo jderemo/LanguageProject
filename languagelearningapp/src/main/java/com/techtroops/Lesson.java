@@ -1,36 +1,26 @@
 package com.techtroops;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * Lesson class that links to a quiz
+ */
 public class Lesson {
-    // Variables
     private String lessonID;
     private String language;
     private Difficulty difficultyLevel; // Assuming Difficulty is an enum or class
     private String content;
     private String duration;
-    private List<Question> questions; // Use List<Question> for questions
+    private String quizID;
 
     // Constructor
-    public Lesson(String lessonID, String language, Difficulty difficultyLevel, String content, String duration, List<Question> questions) {
+    public Lesson(String lessonID, String language, Difficulty difficultyLevel, String content, String duration, String quizID) {
         this.lessonID = lessonID;
         this.language = language;
         this.difficultyLevel = difficultyLevel;
         this.content = content;
         this.duration = duration;
-        this.questions = questions != null ? questions : new ArrayList<>(); // Initialize the questions list
+        this.quizID = quizID;
     }
 
-    public void startLesson() {
-        // Display lesson content
-        System.out.println("Lesson Content: " + this.content);
-        Narriator.playSound(content);
-        System.out.println("Duration: " + this.duration);
-        
-        // Optionally, you can add code here to allow the user to choose a quiz or proceed in another way.
-    }
-    
     // Getters and Setters
     public String getLessonID() {
         return lessonID;
@@ -72,14 +62,12 @@ public class Lesson {
         this.duration = duration;
     }
 
-    public List<Question> getQuestions() {
-        return questions;
+    public String getQuizID(){
+        return quizID;
     }
-    public void displayContent() {
-        System.out.println("Lesson Content: " + content); // Assuming 'content' holds the lesson content
-        Narriator.playSound(content);
-        System.out.println("Duration: " + duration);
-        System.out.println("Difficulty Level: " + difficultyLevel);
+
+    public void setQuizID(String quizID){
+        this.quizID = quizID;
     }
 
 }

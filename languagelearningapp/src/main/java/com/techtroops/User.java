@@ -3,8 +3,10 @@ package com.techtroops;
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * User class
+ */
 public class User {
-
     private String userID;
     private String username;
     private String password;
@@ -32,7 +34,7 @@ public class User {
         this.progressTrackers = new ArrayList<ProgressTracker>();
     }
 
-    // To String method
+    // toString method
     public String toString(){
         String trackers = "";
         for(ProgressTracker p : progressTrackers){
@@ -90,13 +92,11 @@ public class User {
         return progressTrackers;
     }
 
-    public void addProgressTracker(ProgressTracker tracker) {
-        if (progressTrackers == null) {
-            progressTrackers = new ArrayList<>();
-        }
-        progressTrackers.add(tracker);
-    }
-
+    /**
+     * Gets the progress tracker for the specified langugage
+     * @param language Language to search for
+     * @return The resulting progress tracker. Returns a new one if there wasn't one already.
+     */
     public ProgressTracker getProgressTrackerByLanguage(String language){
         for (ProgressTracker pT : progressTrackers){
             if (pT.getLanguage().equals(language)){

@@ -2,28 +2,31 @@ package com.techtroops;
 
 import java.util.List;
 
+/**
+ * Quiz class that holds questions that relate
+ * to the lesson specified in the Lesson ID
+ */
 public class Quiz {
     private String quizID;
+    private String languguage;
+    private String lessonID;
     private List<Question> questionsList;
     private String result;
-    private int score;
 
-    public Quiz(String quizID, List<Question> questionsList) {
+    // Constructor
+    public Quiz(String quizID, String language, String lessonID, List<Question> questionsList) {
         this.quizID = quizID;
         this.questionsList = questionsList;
+        this.languguage = language;
         this.result = "";
-        this.score = 0;
+        this.lessonID = lessonID;
     }
 
-    public void gradeQuiz() {
-        result = "Score: " + score + "/" + questionsList.size();
-        System.out.println(result);
-    }
-
-    public String getQuizID() {
-        return quizID;
-    }
-
+    /**
+     * Gets the question at the specified index
+     * @param index index of question
+     * @return the question if it exists
+     */
     public Question getQuestion(int index) {
         if (index >= 0 && index < questionsList.size()) {
             return questionsList.get(index);
@@ -31,11 +34,10 @@ public class Quiz {
         return null;
     }
 
-    public boolean checkAnswer(String userAnswer, int index) {
-        if (index >= 0 && index < questionsList.size()) {
-            return questionsList.get(index).getAnswer().equalsIgnoreCase(userAnswer);
-        }
-        return false;
+    // Getters and Setters
+    
+    public String getQuizID() {
+        return quizID;
     }
 
     public String getQuizGrade() {
@@ -48,5 +50,21 @@ public class Quiz {
 
     public List<Question> getQuestionsList(){
         return this.questionsList;
+    }
+
+    public String getLanguage(){
+        return languguage;
+    }
+
+    public void setLanguage(String language){
+        this.languguage = language;
+    }
+
+    public String getLessonID(){
+        return lessonID;
+    }
+
+    public void setLessonID(String lessonID){
+        this.lessonID = lessonID;
     }
 }

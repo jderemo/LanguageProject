@@ -3,17 +3,19 @@ package com.techtroops;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * True or False question class
+ */
 public class TrueOrFalse extends Question {
-
     private String questionText;
-    private String exerciseID;
+    private String questionID;
     private List<String> userOptions;
     private String correctAnswer;
 
-    public TrueOrFalse(String questionText, String exerciseID, List<String> userOptions, String correctAnswer) {
+    // Constructor
+    public TrueOrFalse(String questionText, String questionID, List<String> userOptions, String correctAnswer) {
         this.questionText = questionText;
-        this.exerciseID = exerciseID;
+        this.questionID = questionID;
         ArrayList<String> options = new ArrayList<String>();
         options.add("True");
         options.add("False");
@@ -22,6 +24,7 @@ public class TrueOrFalse extends Question {
 
     }
 
+    // Getters and Setters
     @Override
     public String getQuestion() {
         return this.questionText;
@@ -33,8 +36,8 @@ public class TrueOrFalse extends Question {
     }
 
     @Override
-    public String getExerciseID() {
-        return this.exerciseID;
+    public String getQuestionID() {
+        return this.questionID;
     }
 
     @Override
@@ -43,8 +46,8 @@ public class TrueOrFalse extends Question {
     }
 
     @Override
-    public void startExercise(String exerciseID) {
-        this.exerciseID = exerciseID; // Set the exerciseID when starting the exercise
+    public void setQuestionId(String questionID) {
+        this.questionID = questionID;
     }
 }
 

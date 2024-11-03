@@ -2,19 +2,23 @@ package com.techtroops;
 
 import java.util.ArrayList;
 
+/**
+ * A class to track the user's completed lessons and 
+ * overall progress in a language
+ */
 public class ProgressTracker {
-    private String language;                        // Field to hold language
-    private ArrayList<String> completedLessons;     //Field to hold completed lessons
-    private double progress;                       // Field to hold user ID
+    private String language;
+    private ArrayList<String> completedLessons;
+    private double progress;
 
-    // Constructor with language parameter
+    // Constructor
     public ProgressTracker(double progress, String language, ArrayList<String> completedLessons) {
         this.progress = progress;
         this.language = language;
         this.completedLessons = completedLessons;
     }
 
-    // To String method
+    // toString method
     public String toString(){
         String lessons = "";
         for(String s : completedLessons){
@@ -24,7 +28,7 @@ public class ProgressTracker {
     }
 
 
-    // Getter for progress
+    // Getters and Setters
     public double getProgress() {
         return progress;
     }
@@ -33,7 +37,6 @@ public class ProgressTracker {
         this.progress = progress;
     }
 
-    // Getter for language
     public String getLanguage() {
         return language;
     }
@@ -42,13 +45,16 @@ public class ProgressTracker {
         return completedLessons;
     }
 
-    // Method to update progress
+    /**
+     * Adds a lesson to the progress tracker's completed lessons and gets the user's overall progress across the language.
+     * @param l Lesson to complete
+     */
     public void completeLesson(Lesson l) {
         if (completedLessons.contains(l.getLessonID())){
             System.out.println("User already has completed the lesson: " + l.getLessonID());
             return;
         }
         completedLessons.add(l.getLessonID());
-        progress = (double) completedLessons.size() / (double) LessonList.getInstance().getLessons().size();
+        progress = (double) completedLessons.size() / (double) LessonFactory.getInstance().GetLessonsOfLanguage(l.getLanguage()).size();
     }
 }

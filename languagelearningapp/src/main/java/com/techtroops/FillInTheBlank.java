@@ -2,22 +2,27 @@ package com.techtroops;
 
 import java.util.List;
 
+/**
+ * Fill In The Blank Question type
+ */
 public class FillInTheBlank extends Question {
 
     private String question;
-    private String exerciseID;
+    private String questionID;
     private List<String> userOptions;
     private String correctAnswer;
 
-    public FillInTheBlank(String question, String exerciseID, List<String> userOptions, String correctAnswer) {
+    // Constructor
+    public FillInTheBlank(String question, String questionID, List<String> userOptions, String correctAnswer) {
         this.question = question;
-        this.exerciseID = exerciseID;
+        this.questionID = questionID;
         this.userOptions = userOptions;
     }
 
+    // Getters and Setters
     @Override
-    public void startExercise(String exerciseID) {
-        this.exerciseID = exerciseID;
+    public void setQuestionId(String questionID) {
+        this.questionID = questionID;
     }
 
     @Override
@@ -31,8 +36,8 @@ public class FillInTheBlank extends Question {
     }
 
     @Override
-    public String getExerciseID() {
-        return this.exerciseID;
+    public String getQuestionID() {
+        return this.questionID;
     }
 
     public List<String> getUserOptions() {

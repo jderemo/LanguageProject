@@ -3,12 +3,35 @@ package com.techtroops;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Lesson Factory Singleton class that interacts with 
+ * the lesson list, the UI, and the Narrator. Contains a console implementation
+ * of the lesson list and contains methods for a GUI implementation.
+ */
 public class LessonFactory {
-    private static LessonList lessonList = LessonList.getInstance();
+    private static LessonList lessonList;
     private static Scanner scanner = LanguageLearningApp.scanner;
     public static Lesson currentLesson;
 
-    public static void findLesson(){
+    private static LessonFactory instance;
+
+    private LessonFactory(){
+        lessonList = LessonList.getInstance();
+        scanner = LanguageLearningApp.scanner;
+    }
+
+    public static LessonFactory getInstance(){
+        if (instance == null){
+            instance = new LessonFactory();
+        }
+        return instance;
+    }
+
+    /**
+     * Console implementation of finding a lesson in the lesson list.
+     * After a lesson is found, it will call a method to begin the lesson 
+     */
+    public void findLessonConsoleUi(){
         // Get language input from user
         System.out.println("What language would you like to study? Available options: \"Spanish\"");
         String language = scanner.nextLine();
@@ -18,7 +41,7 @@ public class LessonFactory {
         }
 
         // Get the available lessons
-        ArrayList<Lesson> lessons = GetAvailableLessonsForUser(language);
+        ArrayList<Lesson> lessons = GetLessonsOfLanguage(language);
 
         if (lessons.size() == 0){
             System.out.println("Wow! You have completed all of the available lessons for this language!\nReturning to menu...");
@@ -31,39 +54,71 @@ public class LessonFactory {
         }
         System.out.println("Which would you like to take?");
 
-        String lessonToTake = scanner.nextLine();
-        boolean lessonValid = false;
-        while (!lessonValid){
-            for (Lesson l : lessons){
-                if (l.getLessonID().equals(lessonToTake)){
-                    lessonValid = true;
-                }
-            }
-            if (!lessonValid){
-                System.out.println("That lesson doesn't exist. Try again.");
-                lessonToTake = scanner.nextLine();
-            }
+        Lesson lessonToTake = getLesson(language, scanner.nextLine());
+        while (lessonToTake == null){
+            System.out.println("That lesson doesn't exist. Try again.");
+            lessonToTake = getLesson(language, scanner.nextLine());
         }
         // Begin Lesson
-        beginLesson(lessonToTake);
+        beginLessonConsoleUi(lessonToTake);
     }
 
-    private static void beginLesson(String lessonId){
-        currentLesson = lessonList.getLesson(lessonId);
+    /**
+     * Gets a lesson from the lesson list.
+     * @param language Language of the lesson 
+     * @param lessonId ID of the lesson
+     * @return The resulting lesson after searching for it. If no lesson was found, returns null.
+     */
+    public Lesson getLesson(String language, String lessonId){
+        ArrayList<Lesson> lessons = GetLessonsOfLanguage(language);
 
-        System.out.println("Starting Lesson: " + lessonId + "\nFollow along as I read the contents to you...\n" + currentLesson.getContent());
-        Narriator.playSound(LessonFactory.currentLesson.getContent());
+        if (lessons.size() == 0){
+            return null;
+        }
+
+        for(Lesson l : lessons){
+            if (l.getLessonID().equals(lessonId)){
+                return l;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * A method that reads the language's contents aloud
+     * @param lesson Lesson to read
+     */
+    public void readLesson(Lesson lesson){
+        if (lesson == null){
+            return;
+        }
+        Narriator.playSound(lesson.getContent());
+    }
+    
+    /**
+     * Console implementation of beginning a lesson. After the lesson is read
+     * to the user, the user will be prompted to start the assiciated quiz.
+     * @param lesson Lesson ID to start
+     */
+    private void beginLessonConsoleUi(Lesson lesson){
+        if (lesson == null){
+            return;
+        }
+        if (currentLesson != null){
+            return;
+        }
+        currentLesson = lesson;
+
+        System.out.println("Starting Lesson: " + lesson.getLessonID() + "\nFollow along as I read the contents to you...\n" + currentLesson.getContent());
+        readLesson(currentLesson);
         System.out.println("Ready to take the quiz? (y, n)");
-        boolean userAnswered = false;
-        while (!userAnswered){
+        while (true){
             switch(scanner.nextLine().toLowerCase()){
                 case "y":{
-                    QuizFactory.launchQuiz(lessonId);
-                    userAnswered = true;
-                    break;
+                    QuizFactory.getInstance().launchQuizConsoleUi(QuizFactory.getQuizById(currentLesson.getQuizID()));
+                    return;
                 }
                 case "n":{
-                    userAnswered = true;
                     return;
                 }
                 default: {
@@ -73,7 +128,13 @@ public class LessonFactory {
             }
         }
     }
-    private static ArrayList<Lesson> GetAvailableLessonsForUser(String language) {
+
+    /**
+     * Gets a list of lessons for the specified language
+     * @param language Language of lessons to search for
+     * @return an ArrayList of lessons that are for the given lanugage
+     */
+    public ArrayList<Lesson> GetLessonsOfLanguage(String language) {
         ArrayList<Lesson> lessons = lessonList.getLessonsByLanguage(language);
 
         ProgressTracker progressTrackerForLanguage = LanguageLearningApp.getCurrentUser().getProgressTrackerByLanguage(language);
