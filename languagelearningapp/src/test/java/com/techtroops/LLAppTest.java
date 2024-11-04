@@ -47,6 +47,11 @@ public class LLAppTest {
     }
 
     @Test
+    public void testFailedLogin(){
+        assertEquals(UserFactory.getInstance().login("MarketingEmma", "BrandM@ster4!"), null);
+    }
+
+    @Test
     public void testLookUpLesson(){
         assertEquals(LessonFactory.getInstance().getLesson("Spanish", "Spanish1").getLessonID(), "Spanish1");
     }
@@ -61,6 +66,15 @@ public class LLAppTest {
     }
 
     @Test
+    public void testStartingTwoQuizzes(){
+        QuizFactory quizFactory = QuizFactory.getInstance();
+        ArrayList<Quiz> quizList = quizFactory.getAvailableQuizzes(UserList.getInstance().locateUserByUsername("TechEducatorDavid"), "Spanish");
+        quizFactory.launchQuiz(quizList.get(0));
+        quizFactory.launchQuiz(quizList.get(1)); // Shouldn't start since there is already one active
+        assertEquals(quizFactory.getCurrentQuiz().getQuizID(), "Spanish1");
+    }
+
+    @Test
     public void testAnswerQuestion(){
         QuizFactory quizFactory = QuizFactory.getInstance();
         ArrayList<Quiz> availableQuizzes = quizFactory.getAvailableQuizzes(UserList.getInstance().locateUserByUsername("MarketingEmma"), "Spanish");
@@ -70,16 +84,32 @@ public class LLAppTest {
     }
 
     @Test
-    public void testGettingCorrectProgressTracker(){
+    public void testGettingProgressTracker(){
         User user = UserList.getInstance().locateUserByUsername("MarketingEmma");
         assertEquals(user.getProgressTrackerByLanguage("Spanish").getLanguage(), "Spanish");
     }
 
     @Test
+    public void testGettingNullProgressTracker(){
+        User user = UserList.getInstance().locateUserByUsername("MarketingEmma");
+        assertEquals(user.getProgressTrackerByLanguage("French").getLanguage(), "French");
+    }
+
+    @Test
     public void testProgressTrackerProgress(){
-        LanguageLearningApp.setCurrentUser(UserFactory.getInstance().login("MarketingEmma", "BrandM@ster2024!"));
-        ProgressTracker pT = LanguageLearningApp.getCurrentUser().getProgressTrackerByLanguage("Spanish");
-        pT.completeLesson(LessonList.getInstance().getLesson("Spanish2"));
+        Lesson lessonToAdd = LessonList.getInstance().getLesson("Spanish2");
+        User user = UserList.getInstance().locateUserByUsername("MarketingEmma");
+        ProgressTracker pT = user.getProgressTrackerByLanguage("Spanish");
+        pT.completeLesson(lessonToAdd);
         assertEquals((long) pT.getProgress(), (long) 1);;
     }
+
+    @Test
+    public void testCompletingExistingLesson(){
+        Lesson lessonToAdd = LessonList.getInstance().getLesson("Spanish1");
+        User user = UserList.getInstance().locateUserByUsername("MarketingEmma");
+        ProgressTracker pT = user.getProgressTrackerByLanguage("Spanish");
+        assertFalse(pT.completeLesson(lessonToAdd));
+    }
+
 }

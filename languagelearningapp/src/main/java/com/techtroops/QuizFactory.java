@@ -61,11 +61,11 @@ public class QuizFactory {
 
         Lesson lesson = null;
         ArrayList<Quiz> quizzes = new ArrayList<Quiz>();
-        for (String s : userProgressTracker.getCompletedLessons()){
-            lesson = lessonList.getLesson(s);
-            for (Quiz q : quizList){
-                if (q.getQuizID().equals(lesson.getQuizID())){
-                    quizzes.add(q);
+        for (String lessonId : userProgressTracker.getCompletedLessons()){
+            lesson = lessonList.getLesson(lessonId);
+            for (Quiz quiz : quizList){
+                if (quiz.getQuizID().equals(lesson.getQuizID())){
+                    quizzes.add(quiz);
                 }
             }
         }

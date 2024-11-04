@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 public class LessonFactory {
     private static LessonList lessonList;
-    private static Scanner scanner = LanguageLearningApp.scanner;
+    private static Scanner scanner;
     public static Lesson currentLesson;
 
     private static LessonFactory instance;

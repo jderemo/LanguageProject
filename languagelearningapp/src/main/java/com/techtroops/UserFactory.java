@@ -58,6 +58,10 @@ public class UserFactory {
         return null;
     }
 
+    /**
+     * Saves the user list
+     * @param user user to log out
+     */
     public void logout(User user){
         userList.updateUserById(user.getUserID(), user);
         System.out.println("Goodbye for now " + user.getUsername() + "!\nHope to see you again soon!");

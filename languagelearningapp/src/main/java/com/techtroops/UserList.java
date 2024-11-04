@@ -44,10 +44,10 @@ public class UserList {
      * @return a user with the given username
      */
     public User locateUserByUsername(String username){
-        for(User u : users){
-            if (u.getUsername().equals(username)){
+        for(User user : users){
+            if (user.getUsername().equals(username)){
                 System.out.println("Found User with name " + username);
-                return u;
+                return user;
             }
         }
         return null;
