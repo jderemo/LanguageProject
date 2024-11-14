@@ -7,8 +7,13 @@
                 "completedLessons": [
                     "Spanish1"
                 ],
-                "progress": 0.33,
+                "progress": 0.5,
                 "language": "Spanish"
+            },
+            {
+                "completedLessons": [],
+                "progress": 0,
+                "language": "French"
             }
         ],
         "userID": "test1",
